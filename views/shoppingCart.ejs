@@ -1,0 +1,11 @@
+<%- include('header') %>
+
+<div class="row">
+    <% products.forEach(function(product){ %>
+        <div class="col">
+            <%- include('product/show-sc', {product:product }); %>
+        </div>
+    <% }); %>
+</div>
+
+<%- include('footer') %>
