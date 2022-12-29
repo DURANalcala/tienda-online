@@ -9,6 +9,7 @@ html { height: 100%;}
 .nav .open > a:hover, 
 .nav .open > a:focus {background-color: transparent;}
 
+
 /*-------------------------------*/
 /*           Wrappers            */
 /*-------------------------------*/
@@ -352,6 +353,8 @@ a[href*="#followme"]::before {
 /*-------------------------------*/
 /*            Overlay            */
 /*-------------------------------*/
+
+
 
 .overlay {
     position: fixed;

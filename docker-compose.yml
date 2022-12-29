@@ -1,17 +1,18 @@
 version: '3.3'
 
 services:
-    mysqldb:
+    db:
       image: mysql:5.7
+      container_name: db
       restart: unless-stopped
       env_file: .env
       environment:
-        - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
-        - MYSQL_DATABASE=$DB_DATABASE
+        MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+        MYSQL_DATABASE: $DB_DATABASE
       ports:
-        - $MYSQLDB_LOCAL_PORT:$MYSQLDB_LOCAL_PORT
+        - $DB_PORT:$DB_PORT
       volumes:
-        - db:/var/lib/mysql
+        - db_data:/var/lib/mysql
     app:
       build: .
       restart: unless-stopped
@@ -19,10 +20,9 @@ services:
       ports:
         - 3000:3000
       environment:
-         - DB_HOST=mysqldb
+         - DB_HOST=db
          - PORT=$NODE_PORT
-         - DB_PORT=$MYSQLDB_DOCKER_PORT
       depends_on:
-         - mysqldb
+         - db
 volumes:
-  db:
+  db_data: {}

@@ -1,16 +1,29 @@
 <div class="container-fuid">
         <nav class="nav justify-content-end" style="background-color: rgba(151, 145, 145, 0.137);">
               
-          <ul class="nav justify-content-end">
-            <a class="nav-linkup" style="color: black" href="/">Home</a>
+          <ul class="d-flex nav justify-content-end gap-3">
+              <div class="d-flex flex-column align-items-center">
+                <a class="nav-linkup" style="color: black" href="/">Home</a>
+                <img src="img/house-icon.jpeg" alt="house-icon" width="50" height="50">
+              </div>
               <% if (!user) { %>
-                <a class="nav-linkup" style="color: black" href="/Login">Iniciar Sesion</a>
-                <a class="nav-linkup" style="color: black" href="/signup">Registrarse</a>
+                <div class="d-flex flex-column align-items-center">
+                  <a class="nav-linkup" style="color: black" href="/Login">Iniciar Sesion</a>
+                  <img src="img/iniciarsesion-icon.jpeg" alt="login-icon" width="50" height="50">
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                  <a class="nav-linkup" style="color: black" href="/signup">Registrarse</a>
+                  <img src="img/registrarse-icon.jpeg" alt="signup-icon" width="50" height="50">
+                </div>
+                
               <% } %>
               <% if(user) { %>
                 <a class="nav-linkup" style="color: black" href="/logout">logout</a>
               <% } %>
-              <a class="nav-linkup" style="color: black" href="/shoppingCart">ShoppingCart</a>
+              <div class="d-flex flex-column align-items-center">
+                <a class="nav-linkup" style="color: black" href="/shoppingCart">ShoppingCart</a>
+                <img src="img/shoppingcart-icon.jpeg" alt="signup-icon" width="50" height="50">
+              </div>
           </ul>
         </nav>
       </div> 
