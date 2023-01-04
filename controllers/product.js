@@ -63,7 +63,7 @@ module.exports = class ProductController {
     }
 
     getProducts = async (req, res) => {
-        const [products] = await pool.query('SELECT * from product')
+        const [products] = await this.pool.query('SELECT * from product')
         res.render('inventario-dashboard-products', { products })
     }
 

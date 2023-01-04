@@ -3,16 +3,21 @@ const app = express()
 const port = process.env.PORT || 4000
 const morgan = require('morgan')
 const session = require('express-session')
-const { pool } = require('./db')
 const path = require('path')
-const { validatePassword } = require("./utils/validators")
-const { authMid, onlyAdmin, onlyInventario } = require("./middlewares/auth")
-const { redirecter } = require("./utils/redirecter")
-const { upload } = require('./libs/multer')
 const router = require("./routes/index.route")
+const expressEjsLayouts = require("express-ejs-layouts")
 
 app.use(express.static(path.join(__dirname, '/public')))
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+app.use('css', express.static(path.join(__dirname, '/public/css')))
+app.use('js', express.static(path.join(__dirname, '/public/js')))
+app.use('img', express.static(path.join(__dirname, '/public/img')))
+app.use('node_modules', express.static(path.join(__dirname, '/node_modules')))
+
+
+app.use(expressEjsLayouts)
+
+app.locals.chartjs = require('chart.js')
 
 app.set('view engine', 'ejs')
 app.use(session({
@@ -31,6 +36,9 @@ app.use((req, res, next) => {
 })
 
 app.use('/', router)
+app.use(require('./routes/product.route'))
+app.use(require('./routes/users.route'))
+
 
 app.listen(port, () => {
     console.log("server on http://localhost:" + port)

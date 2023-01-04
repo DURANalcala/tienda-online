@@ -4,16 +4,16 @@
           <ul class="d-flex nav justify-content-end gap-3">
               <div class="d-flex flex-column align-items-center">
                 <a class="nav-linkup" style="color: black" href="/">Home</a>
-                <img src="img/house-icon.jpeg" alt="house-icon" width="50" height="50">
+                <img src="/img/house-icon.jpeg" alt="house-icon" width="50" height="50">
               </div>
               <% if (!user) { %>
                 <div class="d-flex flex-column align-items-center">
                   <a class="nav-linkup" style="color: black" href="/Login">Iniciar Sesion</a>
-                  <img src="img/iniciarsesion-icon.jpeg" alt="login-icon" width="50" height="50">
+                  <img src="/img/iniciarsesion-icon.jpeg" alt="login-icon" width="50" height="50">
                 </div>
                 <div class="d-flex flex-column align-items-center">
                   <a class="nav-linkup" style="color: black" href="/signup">Registrarse</a>
-                  <img src="img/registrarse-icon.jpeg" alt="signup-icon" width="50" height="50">
+                  <img src="/img/registrarse-icon.jpeg" alt="signup-icon" width="50" height="50">
                 </div>
                 
               <% } %>
@@ -22,8 +22,51 @@
               <% } %>
               <div class="d-flex flex-column align-items-center">
                 <a class="nav-linkup" style="color: black" href="/shoppingCart">ShoppingCart</a>
-                <img src="img/shoppingcart-icon.jpeg" alt="signup-icon" width="50" height="50">
+                <img src="/img/shoppingcart-icon.jpeg" alt="signup-icon" width="50" height="50">
               </div>
           </ul>
         </nav>
-      </div> 
+      </div>
+           <header class="py-3 border-bottom logo-container"> 
+                <div class="container d-flex " >
+                  <a href="/" class="d-flex gap-3 align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+                     <img src="img/logo.jpeg" width="170" height="170">
+                    <span class="fs-4" style="font-size:3rem;"> 𝕿𝖚 𝖑𝖎𝖇𝖗𝖊𝖙𝖆 𝖉𝖊 𝖊𝖓𝖘𝖚𝖊ñ𝖔 𝖑𝖆 <br> 𝖕𝖔𝖉𝖊𝖒𝖔𝖘 𝖛𝖔𝖑𝖛𝖊𝖗 𝖗𝖊𝖆𝖑𝖎𝖉𝖆𝖉
+                    </span>
+                  </a>
+                  <ul>
+                    <img src="img/redes.jpeg" alt="" width="170" height="170" style="object-fit: contain;" >
+                    <img src="img/ubicacion-icon.jpeg" alt="" width="70" height="70" style="object-fit: contain;">
+                  </ul>
+                </div>
+              </header>
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f31165 !important;" >
+                <div class="container-fluid">
+                  <h1 class="navbar-brand text-warning" >Categorias</h1>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav" style="font-weight: bold; text-transform: uppercase;">
+                    <ul class="navbar-nav" >
+                      <li class="nav-item">
+                        <a class="nav-link active text-warning" aria-current="page" href="#" >All</a>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav" >
+                      <li class="nav-item">
+                        <a class="nav-link active text-warning" aria-current="page" href="#" >Libreta</a>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link active text-warning" aria-current="page" href="#" >Lapizeros</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link active text-warning" aria-current="page" href="#" >Marcadores</a>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+            </nav>

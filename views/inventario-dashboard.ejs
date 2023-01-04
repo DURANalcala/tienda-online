@@ -22,6 +22,7 @@
               <a href="#">Brand</a></div></div>
             <li><a href="/inventarioDashboard">Home</a></li>
             <li><a href="/logout">Cerrar Sesion</a></li>
+           </ul>
        </nav>
              <!-- /#sidebar-wrapper -->
      
@@ -33,20 +34,121 @@
                      <span class="hamb-bottom"></span>
                  </button>
                  <div class="container">
-                     <div class="row">
-                        <div class="col-8 m-auto">
-                          <div class="row">
-                            <a href="/products" class="col-md-4 p-4 bg-dark link-light">Products</a>
+                          <div class="row justify-content-end">
+                            <div class="col-md-4 p-4">
+                              <select name="periodo" id="periodo">
+                                <option value="1">Esta semana</option>
+                                <option value="2">Este mes</option>
+                                <option value="3">Este año</option>
+                              </select>
+                            </div>
                           </div>
-                        </div>
-                     </div>
-                 </div>
+                          <div class="row">
+                            <!-- <a href="/products" class="col-md-4 p-4 bg-dark link-light">Products</a> -->
+                              <div class="col">
+                                <div class="card shadow-sm">
+                                  <div class="card-header">
+                                    <h4>Clientes nuevos</h4>
+                                  </div>
+                                  <div class="card-body">
+                                      <p>115</p>
+                                  </div>
+                                </div>
+                              </div>  
+                              <div class="col">
+                                <div class="card shadow-sm">
+                                  <div class="card-header">
+                                    <h4> Productos Vendidos</h4>
+                                  </div>
+                                  <div class="card-body">
+                                      <p>115</p>
+                                  </div>
+                                </div>
+                              </div> 
+                              <div class="col">
+                                <div class="card shadow-sm">
+                                  <div class="card-header">
+                                    <h4>Ganancias</h4>
+                                  </div>
+                                  <div class="card-body">
+                                      <p>115</p>
+                                  </div>
+                                </div>
+                              </div> 
+                              <div class="col">
+                                <div class="card shadow-sm">
+                                  <div class="card-header">
+                                    <h4>Gastos</h4>
+                                  </div>
+                                  <div class="card-body">
+                                      <p>115</p>
+                                  </div>
+                                </div>
+                              </div>                             
+                          </div>
+                          <div class="row my-4">
+                            <div class="col-md-4">
+                              <div class="card">
+                                <canvas id="myChart"></canvas>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="card">
+                                <canvas id="sales"></canvas>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="card">
+                                <canvas id="sales"></canvas>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
              </div>
-             <!-- /#page-content-wrapper -->
-     
+             <!-- /#page-content-wrapper -->          
+            </div>
          </div>
          <!-- /#wrapper -->
-    
+         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+         <script>
+           const ctx = document.getElementById('myChart');
+           const salesCtx = document.getElementById('sales');
+         
+           const chart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                      datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderWidth: 1
+                      }]
+                    },
+                  /*   options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    } */
+           });
+           const salesChar = new Chart(salesCtx, {
+              type: 'bar',
+              data: {
+                labels: ['enero', 'febrero', 'marzo', 'abril'],
+                datasets: [{
+                  label: 'Sales per month',
+                  data: [10, 30, 20, 40],
+                  borderWidth: 1,
+                  fill: false,
+                  tension: 0.4
+                }]
+              }
+           })
+         </script>
          <script>
             $(document).ready(function () {
       var trigger = $('.hamburger'),

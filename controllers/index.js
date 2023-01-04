@@ -1,4 +1,4 @@
-const pool = require('../db')
+const {pool} = require('../db')
 const Users = require('./users')
 const Products = require('./product')
 const { shoppingCartController, addToshoppingCart } = require('./shoppingCart')
