@@ -1,11 +1,59 @@
-<%- include('header') %>
-
-<div class="row">
-    <% products.forEach(function(product){ %>
-        <div class="col">
-            <%- include('product/show-sc', {product:product }); %>
-        </div>
-    <% }); %>
+<div class="container">
+    <div class="row p-4">
+        <h1>Shopping cart</h1>
+    </div>
+    <div class="row p-4">
+            <div class="col">
+                <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">descripcion</th>
+                                    <th scope="col">cantidad</th>
+                                    <th scope="col">Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                 
+                                  <% products.forEach(function(product){ %>
+                                    <tr>
+                                        <th scope="row"><%= product.product_id %></th>
+                                        <td><%= product.name %></td>
+                                        <td><%= product.price %></td>
+                                        <td><%= product.description %></td>
+                                        <td><%= product.q %></td>
+                                        <td>
+                                          <a href="#" class="btn btn-danger">remove</a>
+                                        </td>
+                                    </tr>
+                                  <% }); %>
+                                </tbody>
+                              </table>
+                          </div>
+            </div>
+            <div class="col mx-4">   
+                <div class="card">
+                       <div class="card-header">
+                             <h3> Checkout </h3>
+                        </div>
+                        <div class="card-body">
+                            <h3>subtotal: <%= subtotal %> </h3>
+                            <h3>IVA: <%= iva %> </h3>
+                        </div>  
+                         <div class="card-footer p-4">
+                            <div class="row">
+                                <h3>Total: <%- subtotal + iva %> </h3>
+                            </div>
+                            <div class="row">
+                                <a href="/pagar" class="btn btn-primary"> pagar </a>
+                            </div>
+                        </div>            
+                </div>
+            </div>
+    </div>
 </div>
 
 <%- include('footer') %>

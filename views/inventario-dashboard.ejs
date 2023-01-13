@@ -21,6 +21,7 @@
             <div class="sidebar-brand">
               <a href="#">Brand</a></div></div>
             <li><a href="/inventarioDashboard">Home</a></li>
+            <li><a href="/products">Productos</a></li>
             <li><a href="/logout">Cerrar Sesion</a></li>
            </ul>
        </nav>
@@ -101,7 +102,7 @@
                           <div class="row">
                             <div class="col">
                               <div class="card">
-                                <canvas id="sales"></canvas>
+                                <canvas id="s"></canvas>
                               </div>
                             </div>
                           </div>
@@ -111,11 +112,13 @@
             </div>
          </div>
          <!-- /#wrapper -->
-         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+         <script src="/js/chartjs.js"></script>
 
          <script>
            const ctx = document.getElementById('myChart');
            const salesCtx = document.getElementById('sales');
+           const sctx = document.getElementById('s');
+
          
            const chart = new Chart(ctx, {
                     type: 'doughnut',
@@ -141,6 +144,19 @@
                 labels: ['enero', 'febrero', 'marzo', 'abril'],
                 datasets: [{
                   label: 'Sales per month',
+                  data: [10, 30, 20, 40],
+                  borderWidth: 1,
+                  fill: false,
+                  tension: 0.4
+                }]
+              }
+           })
+           const schar = new Chart(sctx, {
+              type: 'line',
+              data: {
+                labels: ['enero', 'febrero', 'marzo', 'abril'],
+                datasets: [{
+                  label: 'Ganancias por mes',
                   data: [10, 30, 20, 40],
                   borderWidth: 1,
                   fill: false,

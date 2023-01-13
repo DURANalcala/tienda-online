@@ -46,6 +46,7 @@ signUp_post =  async (req,res) => {
        [1, 1, 1, 1, direccion_1, casa])
       const [row] = await this.pool.query('INSERT INTO users (p_nombre, s_nombre, p_apellido, s_apellido, status, email, password, cedula, telf, direccion_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
      [p_nombre, s_nombre, p_apellido,s_apellido, 'ACTIVO', email,hashedPassword,cedula,telf, insertId])
+        await this.pool.query('INSERT INTO users_roles (user_id, rol_id) VALUES (?, ?)',[row.insertId, 9])
       
      res.redirect('/login')
     } catch (error) {

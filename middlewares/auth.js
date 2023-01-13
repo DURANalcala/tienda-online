@@ -5,7 +5,7 @@ async function authMid(req, res, next) {
     if(req.session.user) {
         next()
     } else {
-        res.redirect('accessDenied')
+        res.redirect('login')
     }
 }
 

@@ -11,15 +11,11 @@
              <title><%= (typeof title != "undefined" ? title : "") %></title>       
     </head>
     <body>
-        <% if (!user) { %>
+        <% if (!user || user?.rol === 'cliente') { %>
      
             <%- include('header') %>
-        <% } else if (!user && user.rol === 'cliente') { %>
-            <%- include('header') %>
-        <% } %>
+        <% } %> 
         <%- body %>
-        <script>
-            console.log('bro', <%- JSON.stringify(user) %>)
-        </script>
+        <%- include('footer') %>
     </body>
 </html>

@@ -11,7 +11,6 @@
  <title>Registrarse</title>
 </head>
 <body>
-        <%- include('header') %>
     <div class="wrapper fadeInDown">
         <div class="wrapper fadeInDown">
             <div id="formContent">
@@ -25,29 +24,29 @@
                         <input type="text" id="login" class="fadeIn second" name="cedula" placeholder="cedula">                                                                                                                                                                        
                         <input type="text" id="login" class="fadeIn second" name="telf" placeholder="telefono">                                                                                                                                                                        
                         <div class="form-group">
+                                <select class="form-select" name="estado" id="estado">
+                                    <% direccionData.estados.forEach(function(e){ %>
+                                        <option value="<%= e.id_estado %>"><%= e.estado %></option>
+                                    <% }); %>
+                                </select>                
+                            <select class="form-select" name="ciudad" id="ciudad">
+                                <% direccionData.ciudades.forEach(function(c){ %>
+                                    <option value="<%= c.id_ciudad %>"><%= c.ciudad %></option>
+                                <% }); %>
+                            </select>
+
                             <select class="form-select" name="municipio" id="municipio">
                                 <% direccionData.municipios.forEach(function(c){ %>
                                     <option value="<%= c.id_municipio %>"><%= c.municipio %></option>
                                 <% }); %>
                             </select>
+
                             <select class="form-select" name="parroquia" id="parroquia">
                                 <% direccionData.parroquias.forEach(function(p){ %>
-                                    <option value="<%= p.parroquia %>"><%= p.parroquia %></option>
+                                    <option value="<%= p.id_parroquia %>"><%= p.parroquia %></option>
                                 <% }); %>
                             </select>
-                          
-                           <!--<select class="form-select" name="estado" id="estado">
-                                <% direccionData.estados.forEach(function(e){ %>
-                                    <option value="<%= e.estado %>"><%= e.estado %></option>
-                                <% }); %>
-                            </select>
-                            
-                            <select class="form-select" name="ciudad" id="ciudad">
-                                <% direccionData.ciudades.forEach(function(c){ %>
-                                    <option value="<%= c.ciudad %>"><%= c.ciudad %></option>
-                                <% }); %>
-                            </select>
-                            -->
+                        
                         </div>
                         <input type="text" id="login" class="fadeIn second" name="direccion_1" placeholder="direccion 1">
                         <input type="text" id="login" class="fadeIn second" name="direccion_2" placeholder="direccion 2 (opcional)">  
@@ -67,6 +66,35 @@
             </div>
         </div>
     </div>
+    <script>
+        const ciudades = <%- JSON.stringify( direccionData.ciudades ) %>;
+        const municipios = <%- JSON.stringify( direccionData.municipios ) %>;
+
+        const estado_input = document.getElementById('estado')
+        estado_input.addEventListener('change', async e => {
+            const eid = e.target.value
+            const ciudades_by_estado = ciudades.filter(c => c.id_estado == eid)
+            console.log(ciudades_by_estado, ciudades)
+            const municipios_by_estado = municipios.filter(m => m.id_estado == eid)
+            const ciudad = document.getElementById('ciudad')
+            const municipio = document.getElementById('municipio')
+
+            const c_options = ciudades_by_estado.map(c => {
+                const opt = document.createElement('option')
+                opt.value = c.id_ciudad
+                opt.innerText = c.ciudad
+                return opt
+            })
+            const m_options = municipios_by_estado.map(c => {
+                const opt = document.createElement('option')
+                opt.value = c.id_municipio
+                opt.innerText = c.municipio
+                return opt
+            })
+            ciudad.replaceChildren(...c_options)
+            municipio.replaceChildren(...m_options)
+        })
+    </script>
     <%- include('footer') %>
 </body>
 </html>

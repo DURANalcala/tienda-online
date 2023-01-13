@@ -12,43 +12,8 @@
 -->
 <body>
        <!-- <%- include('header') %> -->
-    <header class="py-3 mb-4 border-bottom">
-        <div class="container d-flex flex-wrap justify-content-center">
-          <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-        <img src="https://png.pngtree.com/png-vector/20210322/ourlarge/pngtree-the-online-shop-logo-uses-a-single-color-home-theme-png-image_3096093.jpg" width="70" height="70">
-            <span class="fs-4"> Nombre  de la tienda
-            </span>
-          </a>
-        </div>
-      </header>
-      
-      <div class=" container">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary" >
-            <div class="container-fluid">
-              <h1 class="navbar-brand" style="color: aliceblue;">Categorias</h1>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav" >
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#" style="color: aliceblue">Categoria 1</a>
-                  </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#" style="color: aliceblue">Categoria 2</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#" style="color: aliceblue">Categoria 3</a>
-                    </li>
-                </ul>
-              </div>
-            </div>
-        </nav>
+      
     <br></br>
     <br></br>
     <div>
@@ -63,7 +28,6 @@
                     <p class="text-muted"><%= product.description %></p>
                     <button type="button" class="btn btn-outline-primary" >Comprar Ahora</button>
                     <form action="/addToShoppingCart" method="post">
-                      <input type="hidden" name="user_id" value="1">
                       <input type="hidden" name="product_id" value="<%= product.product_id %>">
                       <input type="hidden" name="quantity" value="<%= product.quantity %>"> 
                       <button type="submit" class="btn btn-outline-primary"  >Añadir al Carrito</button>
