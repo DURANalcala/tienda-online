@@ -18,10 +18,33 @@ router.get('/shoppingCart', authMid, ctl.shoppingCartController.shoppingCart)
 
 router.post('/addToShoppingCart', authMid, ctl.shoppingCartController.addToshoppingCart)
 
-router.post('/pagar')
-router.get('/pagar', async (req, res) => {
+/* router.post('/pagar', authMid, (req, res) => {
+   const { total } = req.body
+   res.redirect(`/pagar/${total}`)
+})
+ */
+router.post('/pagar', authMid, async (req, res) => {
     const [metodos_de_pago] = await pool.query('SELECT * FROM metos_de_pago');
-    res.render('pagar', { metodos_de_pago })
+    const [bancos] = await pool.query('SELECT * FROM bancos');
+    const { total, iva, tres_porciento_dolares } = req.body
+    res.render('pagar', { metodos_de_pago, bancos, total, iva, tres_porciento_dolares })
+})
+
+router.post('/pagarProducto', authMid, async (req, res) => {
+    const [metodos_de_pago] = await pool.query('SELECT * FROM metos_de_pago');
+    const [bancos] = await pool.query('SELECT * FROM bancos');
+    const { subtotal } = req.body
+    const iva = parseFloat(((subtotal * 16 ) / 100).toFixed(4))
+    const tres_porciento_dolares = parseFloat(((subtotal * 3 ) / 100).toFixed(4))
+    const total = iva + subtotal + tres_porciento_dolares;
+    res.render('pagar', { metodos_de_pago, bancos, total, iva, tres_porciento_dolares })
+})
+
+router.post('/registrarVenta',authMid,  ctl.ventasController.registrarVenta)
+
+router.get('/factura/:id', authMid, (req, res) => {
+    const id = req.params.id
+    res.render('factura')
 })
 
 router.post('/selectEstado', (req, res) => {

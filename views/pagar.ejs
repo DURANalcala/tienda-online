@@ -1,27 +1,172 @@
+<style> 
+   .div-opt {
+      border: solid gray 2px;
+      transition: all ease .5s;
+   }
+   .div-active {
+      border-bottom: solid blue 4px;
+   }
 
+   .hidden {
+      display: none;
+   }
+
+   .bs_form {
+    animation: fadeIn .5s ease-in-out;
+    transition: all .5s ease;
+   }
+   .usd_form {
+    animation: fadeIn .5s ease-in-out;
+    transition: all .5s ease;
+   }
+
+   @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+   }
+</style>
 <div class="container p-4">
     <div class="row">
-        <form class="card p-4" action="/pagar" method="post">
+        <div class="col">
+            <h3 class="bolivares div-opt text p-2 div-active" id="BS" >Bolivares</h3>            
+        </div>        
+        <div class="col">   
+            <h3 class="dollares div-opt text p-2" id="USD">dollares</h3>
+        </div>
+
+    </div>
+    <div class="row">
+        <form class="card p-4" action="/registrarVenta" method="post" id="bs_form">
+            <input type="hidden" name="precio_total" value="<%= total %>" >
+            <input type="hidden" name="tipo_de_pago" value="BS" >
             <div class="form-group my-2">
+                <div class="row">
+                    <div class="col">
+                        <label for="precio_total">Precio total</label>
+                        <input type="number" class="form-control"  id="precio_total" name="pt_b" readonly value="<%= utils.convertDiv('USD', 'BS', total) %>" >
+                    </div>
+                    <div class="col">
+                        <label for="iva">IVA</label>
+                        <input type="number" name="iva" class="form-control" readonly id="iva" value="<%= utils.convertDiv('USD', 'BS', iva)  %>" >
+                    </div>
+             </div>
+         </div>
+<!--             <div class="form-group my-2">
                <select class="form-control my-2" name="divisa" id="divisa">
                     <option value="USD">Dollares</option>
-                    <option value="USD">Bolivares</option>
+                    <option value="BS">Bolivares</option>
                 </select>
-            </div>
-
-                <select class="form-control my-2" name="metodoPago" id="metodo-pago">
+            </div> -->
+            <div class="form-group my-2">
+                <select class="form-control my-2" name="metodo_de_pago" id="metodo-pago" required>
+                    <option>seleccione un metodo de pago</option>
                 <% metodos_de_pago.forEach(function(mdp){ %>              
                     <option value="<%= mdp.metodos_pago_id %>"><%= mdp.name %></option>
                  <% }); %>
                 </select>
+            </div>
+
+            <div class="form-group my-2">
+                <select class="form-control my-2" name="banco" id="banco" required>
+                    <option>seleccione un banco</option>
+                    <% bancos.forEach(function(banco){ %>              
+                        <option value="<%= banco.codigo_banco %>"><%= banco.name %></option>
+                    <% }); %>
+                </select>
+            </div>
 
             <div class="form-group my-2">
                 <label for="exampleFormControlInput1">Referencia de pago</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: 2345">
+                <input type="number" class="form-control" id="exampleFormControlInput1" name="ref_pago" required placeholder="Ejemplo: 2345">
              </div>
-            <div class="form-group" >
-                <button class="btn btn-primary" >Registrar pago</button>
+            <div class="form-group my-2" >
+                <button class="btn btn-primary" type="submit" >Registrar pago</button>
             </div>
         </form
+        
+        <br>
+
+        <form class="card p-4 hidden" action="/registrarVenta" method="post" id="usd_form">
+            <input type="hidden" name="precio_total" value="<%= total %>" >
+            <div class="form-group my-2">
+                <div class="form-group">
+                        <label for="precio_total">Precio total</label>
+                        <input type="number" name="pt_d" class="form-control" readonly id="precio_total" value="<%= total %>" >
+                </div>
+                <div class="form-group">
+                    <label for="iva">IVA</label>
+                    <input type="number" name="iva" class="form-control" readonly id="iva" value="<%= iva %>" >
+                </div>
+                <div class="form-group">
+                    <label for="tres_porciento_dolares">3% en dolares</label>
+                    <input type="number" name="tres_porciento_dolares" class="form-control" readonly id="tres_porciento_dolares" value="<%= tres_porciento_dolares %>" >
+                </div>
+            </div>
+            <input type="hidden" name="tipo_de_pago" value="USD" >
+            <div class="row my-4">
+                <div class="col">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="formNameOnCard">Nombre en la tarjeta</label>
+                    <input type="text" id="formNameOnCard" required class="form-control" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <label class="form-label" for="formCardNumber">Numero de la tarjeta de credito</label>
+                    <input type="number" id="formCardNumber" required class="form-control" />
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row mb-4">
+                <div class="col-3">
+                  <div class="form-outline">
+                    <label class="form-label" for="formExpiration">Expiracion</label>
+                    <input type="number" id="formExpiration" required class="form-control" />
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-outline">
+                    <label class="form-label" for="formCVV" >CVV</label>
+                    <input type="number" id="formCVV" maxlength="3" class="form-control" required />
+                  </div>
+                </div>
+              </div>
+            <div class="form-group my-2" >
+                <button type="submit" class="btn btn-primary" >Registrar pago</button>
+            </div>
+        </form
+       <br>
+        <% if (errors) { %>
+            <% errors.forEach(function(error){ %>
+                <div class="alert alert-danger">error: <%= error %> </div>  
+            <% }); %>
+        <% } %>
+        
     </div>
 </div>
+
+<script>
+    const USD_FORM = document.querySelector('#usd_form')
+    const BS_FORM = document.querySelector('#bs_form')
+    const USD_OPT = document.querySelector('#USD')
+    const BS_OPT = document.querySelector('#BS')
+
+    USD_OPT.addEventListener('click', e => {
+        USD_OPT.classList.add('div-active')
+        BS_OPT.classList.remove('div-active')
+        BS_FORM.classList.add('hidden')
+        USD_FORM.classList.remove('hidden')
+    })
+
+    BS_OPT.addEventListener('click', e => {
+        BS_OPT.classList.add('div-active')
+        USD_OPT.classList.remove('div-active')
+        BS_FORM.classList.remove('hidden')
+        USD_FORM.classList.add('hidden')
+    })
+</script>

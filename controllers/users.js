@@ -1,4 +1,4 @@
-const { validatePassword } = require("../utils/validators");
+const { validatePassword, validateEmail } = require("../utils/validators");
 const md5 = require('blueimp-md5');
 const { redirecter } = require("../utils/redirecter");
 
@@ -26,6 +26,7 @@ signUp_post =  async (req,res) => {
              s_apellido,  
              email, 
              password, 
+             repeatedPassword,
              cedula, 
              telf,
              direccion_1,
@@ -37,6 +38,8 @@ signUp_post =  async (req,res) => {
             if (f.length <= 0) {
                 throw new Error('Todos los campos deben ser llenados')
             }
+            if(password !== repeatedPassword) throw Error('Las contraseñas deben ser iguales');
+            if (!validateEmail(email) || email === "a@a.com") throw Error("el email es invalido");
             if(!validatePassword(password)) {
                 throw new Error('El password debe tener al menos 3 numeros')
             }
@@ -127,7 +130,8 @@ registrarEmpleado_get = async (req, res) => {
     res.render('registrar-empleado', { roles })
 }
 
-inventarioDashboard = (req, res) => {
+inventarioDashboard = async (req, res) => {
+   // const [facturas] = await this.pool.query('SELECT * from historial WHERE fecha = ')
     res.render('inventario-dashboard')
 }
 

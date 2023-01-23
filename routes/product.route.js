@@ -18,4 +18,6 @@ router.get('/editProduct/:productid', authMid, onlyInventario , ctls.productCont
 
 router.get('/detailsProduct/:productid', ctls.productController.detailsProduct)
 
+router.get('/categories/:category', ctls.productController.categoriesProduct)
+
 module.exports = router

@@ -16,43 +16,64 @@
             <div id="formContent">
                 <form action="/signup" method="post">
                     <div>
-                        <input type="text" id="login" class="fadeIn second" name="p_nombre" placeholder="Primer nombre">
-                        <input type="text" id="login" class="fadeIn second" name="s_nombre" placeholder="Segundo nombre">
-                        <input type="text" id="login" class="fadeIn second" name="p_apellido" placeholder="Primer apellido">                                                                        
-                        <input type="text" id="login" class="fadeIn second" name="s_apellido" placeholder="Segundo apellido">                                                                                                                                                                        
-                        <input type="text" id="login" class="fadeIn second" name="email" placeholder="Correo Electronico">
-                        <input type="text" id="login" class="fadeIn second" name="cedula" placeholder="cedula">                                                                                                                                                                        
-                        <input type="text" id="login" class="fadeIn second" name="telf" placeholder="telefono">                                                                                                                                                                        
-                        <div class="form-group">
-                                <select class="form-select" name="estado" id="estado">
-                                    <% direccionData.estados.forEach(function(e){ %>
-                                        <option value="<%= e.id_estado %>"><%= e.estado %></option>
+                        <input type="text" id="p_nombre" class="fadeIn second" name="p_nombre" placeholder="Primer nombre">
+                        <input type="text" id="s_nombre" class="fadeIn second" name="s_nombre" placeholder="Segundo nombre">
+                        <input type="text" id="p_apellido" class="fadeIn second" name="p_apellido" placeholder="Primer apellido">                                                                        
+                        <input type="text" id="s_apellido" class="fadeIn second" name="s_apellido" placeholder="Segundo apellido">                                                                                                                                                                        
+                        <input type="text" id="email" class="fadeIn second" name="email" placeholder="Correo Electronico">
+                        <input type="text" id="cedula" class="fadeIn second" name="cedula" placeholder="cedula">                                                                                                                                                                        
+                        <input type="text" id="telf" class="fadeIn second" name="telf" placeholder="telefono">                                                                                                                                                                        
+                        <div class="form-group my-4">
+                            <div class="form-group my-2">
+                                <label for="estado">
+                                    estado
+                                </label>
+                                    <select class="form-select" name="estado" id="estado">
+                                        <% direccionData.estados.forEach(function(e){ %>
+                                            <option value="<%= e.id_estado %>"><%= e.estado %></option>
+                                        <% }); %>
+                                    </select>    
+                            </div>
+                            <div class="form-group my-2">
+                                <label for="ciudad">
+                                        ciudad
+                                </label>           
+                                <select class="form-select" name="ciudad" id="ciudad">
+                                    <% direccionData.ciudades.forEach(function(c){ %>
+                                        <option value="<%= c.id_ciudad %>"><%= c.ciudad %></option>
                                     <% }); %>
-                                </select>                
-                            <select class="form-select" name="ciudad" id="ciudad">
-                                <% direccionData.ciudades.forEach(function(c){ %>
-                                    <option value="<%= c.id_ciudad %>"><%= c.ciudad %></option>
-                                <% }); %>
-                            </select>
+                                </select>
+                            </div>
 
-                            <select class="form-select" name="municipio" id="municipio">
-                                <% direccionData.municipios.forEach(function(c){ %>
-                                    <option value="<%= c.id_municipio %>"><%= c.municipio %></option>
-                                <% }); %>
-                            </select>
+                            <div class="form-group my-2">
+                                <label for="municipio">
+                                    Municipio
+                                </label>
+                                <select class="form-select" name="municipio" id="municipio">
+                                    <% direccionData.municipios.forEach(function(c){ %>
+                                        <option value="<%= c.id_municipio %>"><%= c.municipio %></option>
+                                    <% }); %>
+                                </select>
+                            </div>
 
-                            <select class="form-select" name="parroquia" id="parroquia">
-                                <% direccionData.parroquias.forEach(function(p){ %>
-                                    <option value="<%= p.id_parroquia %>"><%= p.parroquia %></option>
-                                <% }); %>
-                            </select>
+                            <div class="form-group my-2">
+                                <label for="parroquia">Parroquia</label>
+                                <select class="form-select" name="parroquia" id="parroquia">
+                                    <% direccionData.parroquias.forEach(function(p){ %>
+                                        <option value="<%= p.id_parroquia %>"><%= p.parroquia %></option>
+                                    <% }); %>
+                                </select>
+                            </div>
                         
                         </div>
-                        <input type="text" id="login" class="fadeIn second" name="direccion_1" placeholder="direccion 1">
-                        <input type="text" id="login" class="fadeIn second" name="direccion_2" placeholder="direccion 2 (opcional)">  
-                        <input type="text" id="login" class="fadeIn second" name="casa" placeholder="casa">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
-                        <input type="password" id="password" class="fadeIn third" name="repeatedPassword" placeholder="Confirmar Contraseña">
+                        <input type="text" id="dir1" class="fadeIn second" name="direccion_1" placeholder="direccion 1">
+                        <input type="text" id="dir2" class="fadeIn second" name="direccion_2" placeholder="direccion 2 (opcional)">  
+                        <input type="text" id="casa" class="fadeIn second" name="casa" placeholder="casa">    
+                        <div class="form-group">
+                            <label for="password">La contraseña debe tener mas de 3 caracteres</label>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
+                        </div>
+                        <input type="password" id="repeatedPassword" class="fadeIn third" name="repeatedPassword" placeholder="Confirmar Contraseña">
                         <input type="submit" class="fadeIn fourth" value="Registrarse">
                     </div>
                       <div >
@@ -69,13 +90,30 @@
     <script>
         const ciudades = <%- JSON.stringify( direccionData.ciudades ) %>;
         const municipios = <%- JSON.stringify( direccionData.municipios ) %>;
+        const parroquias = <%- JSON.stringify( direccionData.parroquias ) %>;
+
 
         const estado_input = document.getElementById('estado')
+        const municipio_input = document.getElementById('municipio')
+        const parroquia_input = document.getElementById('parroquia')
+        
+        municipio_input.addEventListener('change', e => {
+            const Mid = e.target.value
+            const parroquias_by_municipio = parroquias.filter(m => m.id_municipio == Mid)
+            const p_options = parroquias_by_municipio.map(c => {
+                const opt = document.createElement('option')
+                opt.value = c.id_parroquia
+                opt.innerText = c.parroquia
+                return opt
+            })
+            parroquia_input.replaceChildren(...p_options)
+        })
+
         estado_input.addEventListener('change', async e => {
             const eid = e.target.value
             const ciudades_by_estado = ciudades.filter(c => c.id_estado == eid)
-            console.log(ciudades_by_estado, ciudades)
             const municipios_by_estado = municipios.filter(m => m.id_estado == eid)
+
             const ciudad = document.getElementById('ciudad')
             const municipio = document.getElementById('municipio')
 
@@ -95,6 +133,5 @@
             municipio.replaceChildren(...m_options)
         })
     </script>
-    <%- include('footer') %>
 </body>
 </html>

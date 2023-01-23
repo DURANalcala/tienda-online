@@ -6,6 +6,8 @@ const session = require('express-session')
 const path = require('path')
 const router = require("./routes/index.route")
 const expressEjsLayouts = require("express-ejs-layouts")
+const utils = require('./utils')
+const { pool } = require('./db')
 
 app.use(express.static(path.join(__dirname, '/public')))
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
@@ -29,16 +31,28 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
-app.use((req, res, next) => {
-    res.locals.user = req.session.user
-    res.locals.errors = req.session.errors
-    next()
+app.use(async (req, res, next) => {
+    try {
+        res.locals.user = req.session.user
+        res.locals.errors = req.session.errors
+        res.locals.utils = utils
+        const [categories] = await pool.query('SELECT * FROM categories');
+        res.locals.categories = categories;
+        next()
+    } catch(err) {
+        next(err)
+    }
 })
 
 app.use('/', router)
 app.use(require('./routes/product.route'))
 app.use(require('./routes/users.route'))
 
+
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
 
 app.listen(port, () => {
     console.log("server on http://localhost:" + port)

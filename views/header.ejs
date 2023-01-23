@@ -3,17 +3,23 @@
               
           <ul class="d-flex nav justify-content-end gap-3">
               <div class="d-flex flex-column align-items-center">
-                <a class="nav-linkup" style="color: black" href="/">Home</a>
-                <img src="/img/house-icon.jpeg" alt="house-icon" width="50" height="50">
+                <a class="nav-linkup" style="color: black; display: flex; flex-direction: column" href="/">
+                  Home
+                  <img src="/img/house-icon.jpeg" alt="house-icon" width="50" height="50">
+                </a>
               </div>
               <% if (!user) { %>
                 <div class="d-flex flex-column align-items-center">
-                  <a class="nav-linkup" style="color: black" href="/Login">Iniciar Sesion</a>
+                  <a class="nav-linkup" style="color: black; display: flex; flex-direction: column" href="/Login">
+                    Iniciar Sesion
                   <img src="/img/iniciarsesion-icon.jpeg" alt="login-icon" width="50" height="50">
-                </div>
+                  </a>
+              </div>
                 <div class="d-flex flex-column align-items-center">
-                  <a class="nav-linkup" style="color: black" href="/signup">Registrarse</a>
-                  <img src="/img/registrarse-icon.jpeg" alt="signup-icon" width="50" height="50">
+                  <a class="nav-linkup" style="color: black; display: flex; flex-direction: column" href="/signup">
+                    Registrarse
+                    <img src="/img/registrarse-icon.jpeg" alt="signup-icon" width="50" height="50">
+                  </a>
                 </div>
                 
               <% } %>
@@ -21,8 +27,11 @@
                 <a class="nav-linkup" style="color: black" href="/logout">logout</a>
               <% } %>
               <div class="d-flex flex-column align-items-center">
-                <a class="nav-linkup" style="color: black" href="/shoppingCart">ShoppingCart</a>
-                <img src="/img/shoppingcart-icon.jpeg" alt="signup-icon" width="50" height="50">
+                <a class="nav-linkup" style="color: black; display: flex; flex-direction: column;" href="/shoppingCart">
+                  ShoppingCart
+                 <img src="/img/shoppingcart-icon.jpeg" alt="signup-icon" width="50" height="50">
+                </a>
+
               </div>
           </ul>
         </nav>
@@ -48,24 +57,14 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbarNav" style="font-weight: bold; text-transform: uppercase;">
                     <ul class="navbar-nav" >
-                      <li class="nav-item">
-                        <a class="nav-link active text-warning" aria-current="page" href="#" >All</a>
-                      </li>
-                    </ul>
-                    <ul class="navbar-nav" >
-                      <li class="nav-item">
-                        <a class="nav-link active text-warning" aria-current="page" href="#" >Libreta</a>
-                      </li>
-                    </ul>
-                    <ul class="navbar-nav">
                         <li class="nav-item">
-                          <a class="nav-link active text-warning" aria-current="page" href="#" >Lapizeros</a>
+                            <a class="nav-link active text-warning" aria-current="page" href="/" >All</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                          <a class="nav-link active text-warning" aria-current="page" href="#" >Marcadores</a>
-                        </li>
+                        <% categories.forEach(function(category){ %>
+                          <li class="nav-item">
+                            <a class="nav-link active text-warning" aria-current="page" href="/categories/<%= category.category_id%>" ><%= category.name %></a>
+                          </li>
+                        <% }); %>
                     </ul>
                   </div>
                 </div>

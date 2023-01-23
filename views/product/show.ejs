@@ -1,13 +1,14 @@
 
 <% if (product) {%>
    <div class="card shadow-sm">
-      <img class="img-fluid" src="<%= product.img_url %>">
+    <a href="/detailsProduct/<%= product.product_id %>" >
+        <img class="img-fluid" src="/<%= product.img_url %>">
+    </a>
           <div class="card-body">
               <h5 class="card-title"><%= product.name %></h5>
               <p class="card-text">$ <%= product.price %> </p>
                   <div class="btn-group">
-                      <a type="button" class="btn btn-outline-primary" href="/detailsProduct/<%= product.product_id %>" >Ver</a>
-                      <button type="button" class="btn btn-outline-primary">...</button>
+                      <a class="btn btn-outline-primary" href="/detailsProduct/<%= product.product_id %>" >Ver</a>
                   </div>
           </div>
       </div>

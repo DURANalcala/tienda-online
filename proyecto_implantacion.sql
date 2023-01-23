@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 10-01-2023 a las 13:16:02
+-- Tiempo de generación: 23-01-2023 a las 07:09:22
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -33,6 +33,41 @@ CREATE TABLE `bancos` (
   `codigo_banco` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `bancos`
+--
+
+INSERT INTO `bancos` (`banco_id`, `name`, `codigo_banco`) VALUES
+(1, 'BANCO CENTRAL DE VENEZUELA', 1),
+(2, 'BANCO DE VENEZUELA S.A.C.A. BANCO UNIVERSAL', 102),
+(3, 'VENEZOLANO DE CRÉDITO, S.A. BANCO UNIVERSAL', 104),
+(4, 'BANCO MERCANTIL, C.A. S.A.C.A. BANCO UNIVERSAL', 105),
+(5, 'BANCO PROVINCIAL, S.A. BANCO UNIVERSAL', 108),
+(6, 'BANCO DEL CARIBE, C.A. BANCO UNIVERSAL', 114),
+(7, 'BANCO EXTERIOR, C.A. BANCO UNIVERSAL', 115),
+(8, 'BANCO OCCIDENTAL DE DESCUENTO BANCO UNIVERSAL, C.A.', 116),
+(9, 'BANCO CARONI, C.A. BANCO UNIVERSAL', 128),
+(10, 'BANESCO BANCO UNIVERSAL S.A.C.A.', 134),
+(11, 'BANCO SOFITASA BANCO UNIVERSAL, C.A.', 137),
+(12, 'BANCO PLAZA, BANCO UNIVERSAL C.A.', 138),
+(13, 'BANCO DE LA GENTE EMPRENDEDORA BANGENTE, C.A.', 146),
+(14, 'BANCO DEL PUEBLO SOBERANO, BANCO DE DESARROLLO', 149),
+(15, 'BFC BANCO FONDO COMUN C.A. BANCO UNIVERSAL', 151),
+(16, 'DELSUR BANCO UNIVERSAL, C.A.', 157),
+(17, 'BANCO DEL TESORO, C.A. BANCO UNIVERSAL', 163),
+(18, 'BANCO AGRICOLA DE VENEZUELA, C.A. BANCO UNIVERSAL', 166),
+(19, 'BANCRECER S.A. BANCO DE DESARROLLO', 168),
+(20, 'MI BANCO, BANCO MICROFINANCIERO, C.A.', 169),
+(21, 'BANCO ACTIVO, C.A. BANCO UNIVERSAL', 171),
+(22, 'BANCAMIGA BANCO MICROFINANCIERO, C.A.', 172),
+(23, 'BANCO INTERNACIONAL DE DESARROLLO, C.A. BANCO UNIVERSAL', 173),
+(24, 'BANPLUS BANCO UNIVERAL, C.A.', 174),
+(25, 'BANCO BICENTENARIO BANCO UNIVERSAL, C.A.', 175),
+(26, 'NOVO BANCO, S.A. SUCURSAL VENEZUELA BANCO UNIVERSAL', 176),
+(27, 'BANCO DE LA FUERZA ARMADA NACIONAL BOLIVARIANA, B.U.', 177),
+(28, 'CITIBANK N.A.', 190),
+(29, 'BANCO NACIONAL CRÉDITO, C.A. BANCO UNIVERSAL', 191);
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +81,21 @@ CREATE TABLE `cabezera_empresa` (
   `factura_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `cabezera_empresa`
+--
+
+INSERT INTO `cabezera_empresa` (`cabezera_empresa_id`, `nombre_empresa`, `direccion_empresa`, `factura_id`) VALUES
+(2, 'Tina', 'Direccion', 7041),
+(4, 'Tina', 'direccion empresa', 3471),
+(5, 'Tina', 'direccion empresa', 3472),
+(6, 'Tina', 'direccion empresa', 3473),
+(7, 'Tina', 'direccion empresa', 3474),
+(8, 'Tina', 'direccion empresa', 3475),
+(9, 'Tina', 'direccion empresa', 3476),
+(10, 'Tina', 'direccion empresa', 3477),
+(11, 'Tina', 'direccion empresa', 3478);
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +107,15 @@ CREATE TABLE `categories` (
   `name` varchar(150) NOT NULL,
   `details` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `name`, `details`) VALUES
+(1, 'libretas', 'Libretas de las mas alta calidad con un precio accesible'),
+(2, 'Lapizeros', 'Lapizeros de las mas alta calidad a un precio accesible'),
+(3, 'Marcadores', 'Marcadores de las mas alta calidad a un precio accesible.');
 
 -- --------------------------------------------------------
 
@@ -608,7 +667,9 @@ INSERT INTO `direcciones` (`direccion_ID`, `id_estado`, `id_ciudad`, `id_municip
 (9, 1, 1, 1, 1, 'edffedfhh', '\"\"', 1234),
 (10, 1, 1, 1, 1, 'dfdfdfdfdf', '\"\"', 6164),
 (11, 1, 1, 1, 1, 'calle carabobo', '\"\"', 6164),
-(12, 1, 1, 1, 1, 'calle carabobo', '\"\"', 6164);
+(12, 1, 1, 1, 1, 'calle carabobo', '\"\"', 6164),
+(13, 1, 1, 1, 1, 'calle carabobo', '\"\"', 1234),
+(14, 1, 1, 1, 1, 'calle 7 entre 2 y 3', '\"\"', 2344);
 
 -- --------------------------------------------------------
 
@@ -662,16 +723,47 @@ INSERT INTO `estados` (`id_estado`, `estado`, `iso_3166-2`) VALUES
 CREATE TABLE `factura` (
   `factura_id` int(11) NOT NULL,
   `codigo_factura` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` date NOT NULL DEFAULT current_timestamp(),
   `precio_total` float NOT NULL,
   `ref_pago` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `IVA` float NOT NULL,
-  `tres_porciento_dolares` float NOT NULL,
-  `p_t_$` float NOT NULL,
-  `p_t_bs` float NOT NULL,
-  `p_t_e` float NOT NULL
+  `tres_porciento_dolares` float NOT NULL DEFAULT 0,
+  `p_t_$` float NOT NULL DEFAULT 0,
+  `p_t_bs` float NOT NULL DEFAULT 0,
+  `p_t_e` float NOT NULL DEFAULT 0,
+  `status` enum('registrada','aceptada','rechazada','devuelta') NOT NULL DEFAULT 'registrada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`factura_id`, `codigo_factura`, `fecha`, `precio_total`, `ref_pago`, `user_id`, `IVA`, `tres_porciento_dolares`, `p_t_$`, `p_t_bs`, `p_t_e`, `status`) VALUES
+(1, 3456, '2023-01-17', 34.4456, 3456, 11, 5.5104, 1.0332, 0, 0, 0, 'registrada'),
+(2, 3444, '2023-01-17', 34.4456, 3456, 11, 5.5104, 1.0332, 0, 0, 0, 'registrada'),
+(22, 3457, '2023-01-18', 34.4456, 3456, 12, 5.5104, 1.0332, 0, 200.867, 0, 'registrada'),
+(401, 3470, '2023-01-18', 3.57, 3293, 13, 0.48, 0.09, 3.57, 0, 0, 'registrada'),
+(1365, 3481, '2023-01-19', 9.66, 2345, 11, 9.6, 0, 0, 9.66, 0, 'registrada'),
+(2714, 3480, '2023-01-19', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(3370, 3475, '2023-01-18', 29.036, 2323, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(3555, 3477, '2023-01-18', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(5523, 3478, '2023-01-18', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(5935, 3474, '2023-01-18', 29.036, 1233, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(6058, 3476, '2023-01-18', 29.036, 2323, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(7232, 3479, '2023-01-18', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(8375, 3472, '2023-01-18', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(8706, 3473, '2023-01-18', 29.036, 1233, 11, 3.904, 0, 0, 29.036, 0, 'registrada');
+
+--
+-- Disparadores `factura`
+--
+DELIMITER $$
+CREATE TRIGGER `ins_historial` AFTER INSERT ON `factura` FOR EACH ROW BEGIN
+    INSERT INTO historial (`factura_id`, `user_id`) VALUES (NEW.factura_id, NEW.user_id);
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -683,8 +775,29 @@ CREATE TABLE `historial` (
   `historial_id` int(11) NOT NULL,
   `factura_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `fecha_compra` date NOT NULL
+  `fecha_compra` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `historial`
+--
+
+INSERT INTO `historial` (`historial_id`, `factura_id`, `user_id`, `fecha_compra`) VALUES
+(16, 5523, 11, '2023-01-19 01:36:52'),
+(18, 7232, 11, '2023-01-19 01:37:35'),
+(19, 2714, 11, '2023-01-19 11:12:10'),
+(24, 1365, 11, '2023-01-19 14:31:56');
+
+--
+-- Disparadores `historial`
+--
+DELIMITER $$
+CREATE TRIGGER `delete_SC_after_checkout` AFTER INSERT ON `historial` FOR EACH ROW BEGIN
+    DELETE FROM shopping_cart
+    WHERE user_id = NEW.user_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -696,8 +809,16 @@ CREATE TABLE `inventario` (
   `inventario_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `ultima_actualizacion` date NOT NULL
+  `ultima_actualizacion` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`inventario_id`, `product_id`, `cantidad`, `ultima_actualizacion`) VALUES
+(1, 1, 23, '2023-01-19'),
+(2, 4, 33, '2023-01-19');
 
 -- --------------------------------------------------------
 
@@ -709,6 +830,14 @@ CREATE TABLE `metos_de_pago` (
   `metodos_pago_id` int(11) NOT NULL,
   `name` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `metos_de_pago`
+--
+
+INSERT INTO `metos_de_pago` (`metodos_pago_id`, `name`) VALUES
+(1, 'transferencia'),
+(2, 'Pago movil');
 
 -- --------------------------------------------------------
 
@@ -1062,6 +1191,19 @@ INSERT INTO `municipios` (`id_municipio`, `id_estado`, `municipio`) VALUES
 (460, 23, 'Sucre'),
 (461, 23, 'Valmore Rodríguez'),
 (462, 24, 'Libertador');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `factura_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2279,6 +2421,14 @@ CREATE TABLE `product_categories` (
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `product_categories`
+--
+
+INSERT INTO `product_categories` (`product_categories_id`, `product_id`, `category_id`) VALUES
+(1, 1, 1),
+(2, 4, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -2319,10 +2469,7 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`shopping_cart_id`, `user_id`, `product_id`, `quantity`) VALUES
-(9, 10, 4, 10),
-(10, 10, 4, 10),
-(11, 10, 1, 20),
-(12, 10, 1, 20);
+(16, 13, 4, 10);
 
 -- --------------------------------------------------------
 
@@ -2354,12 +2501,11 @@ INSERT INTO `users` (`user_id`, `p_nombre`, `s_nombre`, `p_apellido`, `s_apellid
 (3, 'Manuel', 'Luis', 'Gonzales', 'Gonzales', 'ACTIVO', 'manuel@gmail.com', '3acb0eaf5eadf590475e0f37e01a4231', '6448160', '04267471512', 1),
 (4, 'Jose', 'luis', 'duran', 'alcala', 'ACTIVO', 'jose@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '26611812', '04267099827', 5),
 (5, 'Luis', 'carlos', 'duran', 'alcala', 'ACTIVO', 'luis@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '25511812', '04267099827', 6),
-(6, 'dfdfdf', 'dfdfdf', 'dfdfdf', 'dfdfdfdf', 'ACTIVO', 'jose@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '343434334', '43344343', 7),
-(7, 'Luis', 'luis', 'duran', 'duran', 'ACTIVO', 'luis@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '27511812', '3443943', 8),
 (8, 'Jose', 'jose', 'alcala', 'alcala', 'ACTIVO', 'jose1@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '26611812', '439493493', 9),
 (9, 'juan', 'carlos', 'herrera', 'alcala', 'ACTIVO', 'juan@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '25511812', '04267099827', 10),
-(10, 'Jorge', 'Luis', 'Duran', 'Alcala', 'ACTIVO', 'jorge@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '28511812', '04267472630', 11),
-(11, 'Jorge', 'Luis', 'Duran', 'Alcala', 'ACTIVO', 'jorge@gmail.com', '677161ab5289271b37cfa5150f1f8e7f', '28511812', '04267472630', 12);
+(11, 'Jorge', 'Luis', 'Duran', 'Alcala', 'ACTIVO', 'jorge@gmail.com', '677161ab5289271b37cfa5150f1f8e7f', '28511812', '04267472630', 12),
+(12, 'Jorge', 'Luis', 'Duran', 'Alcala', 'ACTIVO', 'a@a.com', '9017da8754667bec8b4f846085ba7521', '28511812', '04267472630', 13),
+(13, 'ariadna', 'michelle', 'mendoza', 'garcia', 'ACTIVO', 'ariadnamendoza.idb@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '4499999', '+584267472630', 14);
 
 -- --------------------------------------------------------
 
@@ -2382,8 +2528,8 @@ INSERT INTO `users_roles` (`users_roles_id`, `rol_id`, `user_id`) VALUES
 (2, 9, 1),
 (4, 2, 9),
 (5, 9, 11),
-(6, 9, 10),
-(7, 9, 10);
+(8, 9, 12),
+(9, 9, 13);
 
 --
 -- Índices para tablas volcadas
@@ -2432,6 +2578,7 @@ ALTER TABLE `estados`
 --
 ALTER TABLE `factura`
   ADD PRIMARY KEY (`factura_id`),
+  ADD UNIQUE KEY `codigo_factura` (`codigo_factura`),
   ADD KEY `ffk_user_id` (`user_id`);
 
 --
@@ -2439,8 +2586,8 @@ ALTER TABLE `factura`
 --
 ALTER TABLE `historial`
   ADD PRIMARY KEY (`historial_id`),
-  ADD KEY `h_user_id_fk` (`user_id`),
-  ADD KEY `h_factura_id_fk` (`factura_id`);
+  ADD UNIQUE KEY `factura_id` (`factura_id`),
+  ADD KEY `h_user_id_fk` (`user_id`);
 
 --
 -- Indices de la tabla `inventario`
@@ -2461,6 +2608,14 @@ ALTER TABLE `metos_de_pago`
 ALTER TABLE `municipios`
   ADD PRIMARY KEY (`id_municipio`),
   ADD KEY `id_estado` (`id_estado`);
+
+--
+-- Indices de la tabla `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD UNIQUE KEY `product_id` (`product_id`),
+  ADD UNIQUE KEY `factura_id` (`factura_id`);
 
 --
 -- Indices de la tabla `parroquias`
@@ -2516,6 +2671,7 @@ ALTER TABLE `shopping_cart`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `direccion_id` (`direccion_id`);
 
 --
@@ -2534,43 +2690,55 @@ ALTER TABLE `users_roles`
 -- AUTO_INCREMENT de la tabla `bancos`
 --
 ALTER TABLE `bancos`
-  MODIFY `banco_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `banco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `cabezera_empresa`
 --
 ALTER TABLE `cabezera_empresa`
-  MODIFY `cabezera_empresa_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cabezera_empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `direccion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `direccion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `factura`
+--
+ALTER TABLE `factura`
+  MODIFY `codigo_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3482;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `historial_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `historial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  MODIFY `inventario_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inventario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `metos_de_pago`
 --
 ALTER TABLE `metos_de_pago`
-  MODIFY `metodos_pago_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `metodos_pago_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
@@ -2594,7 +2762,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT de la tabla `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `product_categories_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_categories_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -2606,29 +2774,23 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `shopping_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `shopping_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `users_roles`
 --
 ALTER TABLE `users_roles`
-  MODIFY `users_roles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `users_roles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `cabezera_empresa`
---
-ALTER TABLE `cabezera_empresa`
-  ADD CONSTRAINT `cabezera_empresa_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `factura` (`factura_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ciudades`
@@ -2646,8 +2808,8 @@ ALTER TABLE `factura`
 -- Filtros para la tabla `historial`
 --
 ALTER TABLE `historial`
-  ADD CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`factura_id`) REFERENCES `factura` (`factura_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `factura` (`factura_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `inventario`
@@ -2660,6 +2822,13 @@ ALTER TABLE `inventario`
 --
 ALTER TABLE `municipios`
   ADD CONSTRAINT `municipios_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `factura` (`factura_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `parroquias`

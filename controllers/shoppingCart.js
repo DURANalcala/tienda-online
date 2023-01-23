@@ -14,7 +14,10 @@ const shoppingCartController = (pool) => async (req, res) => {
         subtotal += (p.price * p.q)
     })
     const iva = parseFloat(((subtotal * 16 ) / 100).toFixed(4))
-    res.render('shoppingCart', { products, subtotal, iva })
+    const tres_porciento_dolares = parseFloat(((subtotal * 3 ) / 100).toFixed(4))
+    const total = iva + subtotal + tres_porciento_dolares;
+    
+    res.render('shoppingCart', { products, subtotal, iva, total, tres_porciento_dolares })
 }
 
 const addToshoppingCart = (pool) => async (req, res) => {

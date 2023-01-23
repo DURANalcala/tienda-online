@@ -12,11 +12,9 @@ services:
         MYSQL_ROOT_HOST: '%'
       ports:
         - $DB_PORT:$DB_PORT
-      volumes:
-        - db_data:/var/lib/mysql
     app:
       build: .
-      restart: unless-stopped
+      restart: always
       env_file: .env
       ports:
         - 3000:3000
@@ -25,5 +23,12 @@ services:
          - PORT=$NODE_PORT
       depends_on:
          - db
-volumes:
-  db_data: {}
+    phpmyadmin:
+     image: phpmyadmin
+     container_name: pma
+     restart: always
+     ports:
+       - "8080:80"
+     environment:
+       PMA_ARBITRARY: 1
+       PMA_HOST: db

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row p-4">
-        <h1>Shopping cart</h1>
+        <h2>Shopping cart</h2>
     </div>
     <div class="row p-4">
             <div class="col">
@@ -45,15 +45,18 @@
                         </div>  
                          <div class="card-footer p-4">
                             <div class="row">
-                                <h3>Total: <%- subtotal + iva %> </h3>
+                                <h3>Total: <%- total %> </h3>
                             </div>
                             <div class="row">
-                                <a href="/pagar" class="btn btn-primary"> pagar </a>
+                                <form action="/pagar" method="post">
+                                  <input type="hidden" name="total" value="<%= total %>">
+                                  <input type="hidden" name="iva" class="form-control" id="iva" value="<%= iva %>" >
+                                  <input type="hidden" name="tres_porciento_dolares" class="form-control" id="tres_porciento_dolares" value="<%= tres_porciento_dolares %>" >
+                                  <button type="submit" class="btn btn-primary"> pagar </button>
+                                </form>
                             </div>
                         </div>            
                 </div>
             </div>
     </div>
 </div>
-
-<%- include('footer') %>

@@ -67,4 +67,11 @@ module.exports = class ProductController {
         res.render('inventario-dashboard-products', { products })
     }
 
+    categoriesProduct = async (req, res) => {
+        const category = req.params.category
+        const sql = "SELECT p.* FROM `product_categories` pc LEFT JOIN product p ON p.product_id = pc.product_id WHERE category_id = ?";
+        const [products] = await this.pool.query(sql, [category])
+        res.render('product/category', { products })
+    }
+
 }
