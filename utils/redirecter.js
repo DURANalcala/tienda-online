@@ -6,6 +6,9 @@ const redirecter = ({res, rol}) => {
         case 'inventario':
             res.redirect('/inventarioDashboard') 
             break;
+        case 'contador':
+                res.redirect('/contadorDashboard') 
+                break;
         default:
             res.redirect('/')
             break;

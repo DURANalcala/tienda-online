@@ -1,5 +1,11 @@
-<% products.forEach(function(product){ %>
-            <div class="col">
-                 <%- include('show', {product:product }); %>
-            </div>
- <% }); %>
+<div class="container">
+     <div class="row">
+          <% if (products.length > 0) {%>
+               <% products.forEach(function(product){ %>
+                    <%- include('show', {product:product }); %>
+               <% }); %>
+          <% } else {  %>
+               <h2>Lo siento no hay productos disponibles en esta categoria</h2>
+          <% }  %>
+     </div>
+</div>

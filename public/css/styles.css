@@ -48,7 +48,7 @@
     transition: all 0.3s ease-in-out;
   }
   
-  input[type=text] {
+  input[type=text], input[type="password"] {
     background-color: #dcdada;
     border: none;
     color: #0d0d0d;

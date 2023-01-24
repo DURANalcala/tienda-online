@@ -2,6 +2,7 @@ const router = require('express').Router()
 const ctl = require("../controllers")
 const { pool } = require('../db')
 const { authMid } = require('../middlewares/auth')
+const md5 = require('blueimp-md5');
 
 
 router.get("/", async (req, res) => {
@@ -17,6 +18,11 @@ router.get('/accessDenied', (req, res) => {
 router.get('/shoppingCart', authMid, ctl.shoppingCartController.shoppingCart)
 
 router.post('/addToShoppingCart', authMid, ctl.shoppingCartController.addToshoppingCart)
+router.post('/removeFromShoppingCart', authMid, ctl.shoppingCartController.deleteFromShoppingCart)
+
+router.get('/md5/:con', (req, res) => {
+    res.send(md5(req.params.con))
+})
 
 /* router.post('/pagar', authMid, (req, res) => {
    const { total } = req.body

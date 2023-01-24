@@ -73,6 +73,7 @@ signUp_post =  async (req,res) => {
         LEFT JOIN roles r ON r.rol_id = ur.rol_id
         WHERE ur.user_id = ?
     `, [user.user_id])  
+        console.log("login-user", user)
         req.session.user = {...user, rol: rol_name}
         req.session.errors = []
         if(req.session.user.status === 'BLOQUEADO') throw new Error('Tu cuenta ha sido bloqueada');
@@ -160,5 +161,27 @@ usersDashboard = async (req, res) => {
     res.render('admin-dashboard-users', { users })
 }
 
+contadorDashboard = async (req, res) => {
+    const [facturas] = await this.pool.query('SELECT * from factura')
+    res.render('contador-dashboard', { facturas })
+}
+
+aceptarFactura = async (req, res) => {
+    const { factura_id } = req.body
+    await this.pool.query("UPDATE factura SET status = 'aceptada' WHERE factura_id = ?", [factura_id])
+    res.redirect('/contadorDashboard')
+}
+
+devolucion = async (req, res) => {
+    const { factura_id } = req.body
+   await this.pool.query("UPDATE factura SET status = 'devuelta' WHERE factura_id = ?", [factura_id])
+    res.redirect('/contadorDashboard')
+}
+
+rechazarFactura = async (req, res) => {
+    const { factura_id } = req.body
+    await this.pool.query("UPDATE factura SET status = 'rechazada' WHERE factura_id = ?", [factura_id])
+    res.redirect('/contadorDashboard')
+}
 
 }

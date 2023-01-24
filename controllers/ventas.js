@@ -46,12 +46,24 @@ module.exports = class VentasController {
                 pt_b
             ]
             )
+            /*const [sc] = await pool.query('SELECT p.* from shopping_cart sc LEFT JOIN product p ON p.product_id = sc.product_id WHERE sc.user_id = ?', [req.session.user.user_id])
+            const sm = sc.reduce((p, c) => {
+                if(!p[c.product_id]) {
+                    p[c.product_id] = { q: 0, ...c }
+                };
+                p[c.product_id].q++
+                return p
+            }, {});
+            const product = sm[0].q
+            */
            const [{ insertId }] = await this.pool.query(sql, valuesForTable)
             const cabezeraSql = "INSERT INTO `cabezera_empresa` (`nombre_empresa`, `direccion_empresa`, `factura_id`) VALUES (?, ?, ?)"
             
             const historialSQL = "INSERT INTO `historial` (`factura_id`, `user_id`) VALUES (?, ?)"
+            const orderSql = "INSERT INTO `orders` (`cantidad`, `product_id`, `precio_total`, ) VALUES (?, ?, ?)"
             //await this.pool.query(cabezeraSql, ['Tina', 'direccion empresa', insertId])
             //await this.pool.query(historialSQL, [insertId, user.user_id])
+           // await this.pool.query(orderSql, [product.q, product.product_id, precio_total])
             res.redirect(`/factura/${insertId}`)
            //res.redirect('/')
         } catch (error) {

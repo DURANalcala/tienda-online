@@ -1,4 +1,4 @@
-const { pool } = require("../db")
+//const { pool } = require("../db")
 
 async function authMid(req, res, next) {
     const user = req.session.user
@@ -7,6 +7,17 @@ async function authMid(req, res, next) {
     } else {
         res.redirect('login')
     }
+}
+
+function only(rol) {
+    return (req, res, next) => {
+        const user = req.session.user
+        if (user.rol === rol) {
+            next()
+        } else {
+            res.redirect('accessDenied')
+        }
+    } 
 }
 
 async function onlyAdmin(req, res, next) {
@@ -27,4 +38,4 @@ async function onlyInventario(req, res, next) {
     }
 }
 
-module.exports = {authMid,onlyAdmin, onlyInventario}
+module.exports = {authMid,onlyAdmin, onlyInventario, only}

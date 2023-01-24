@@ -26,8 +26,11 @@
                                         <td><%= product.description %></td>
                                         <td><%= product.q %></td>
                                         <td>
-                                          <a href="#" class="btn btn-danger">remove</a>
-                                        </td>
+                                          <form action="/removeFromShoppingCart" method="post">
+                                            <input type="hidden" name="product_id" value="<%= product.product_id %>">
+                                            <button type="submit" class="btn btn-danger">remove</button>
+                                          </form>
+                                      </td>
                                     </tr>
                                   <% }); %>
                                 </tbody>

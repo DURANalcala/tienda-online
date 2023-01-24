@@ -4,8 +4,9 @@ function validatePassword(password) {
 }
 
 function validateEmail(email) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    return /^\w+@\w+\.\w{2,3}$/.test(email) || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
 }
+
 
 function AllFieldsAreRequired(body) {
     Object.values(body)

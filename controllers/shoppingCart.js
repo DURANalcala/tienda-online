@@ -32,7 +32,19 @@ const addToshoppingCart = (pool) => async (req, res) => {
 }
 
 
+const deleteFromShoppingCart = (pool) => async (req, res) => {
+    try {
+        const { product_id} = req.body;
+        //const user_id = req.session.user.user_id;
+        await pool.query('DELETE FROM shopping_cart WHERE product_id = ?', [product_id])  
+        res.redirect('back') 
+    } catch (error) {
+        req.session.errors = [error.message]   
+    }
+}
+
 module.exports = {
     shoppingCartController,
-    addToshoppingCart
+    addToshoppingCart,
+    deleteFromShoppingCart
 }
