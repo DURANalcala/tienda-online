@@ -1,7 +1,7 @@
 {
   "name": "pi",
   "version": "1.0.0",
-  "description": "",
+  "description": "md5",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -26,5 +26,13 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DURANalcala/tienda-online.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DURANalcala/tienda-online/issues"
+  },
+  "homepage": "https://github.com/DURANalcala/tienda-online#readme"
 }
