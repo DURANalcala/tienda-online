@@ -723,7 +723,7 @@ INSERT INTO `estados` (`id_estado`, `estado`, `iso_3166-2`) VALUES
 CREATE TABLE `factura` (
   `factura_id` int(11) NOT NULL,
   `codigo_factura` int(11) NOT NULL,
-  `fecha` date NOT NULL DEFAULT current_timestamp(),
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `precio_total` float NOT NULL,
   `ref_pago` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -809,7 +809,7 @@ CREATE TABLE `inventario` (
   `inventario_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `ultima_actualizacion` date NOT NULL DEFAULT current_timestamp()
+  `ultima_actualizacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --

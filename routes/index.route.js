@@ -58,5 +58,28 @@ router.post('/selectEstado', (req, res) => {
     res.send({ msg: 'selected', body: req.body })
 })
 
+router.get('/orders/', authMid, async (req, res) => {
+    const [orders] = await pool.query('SELECT * FROM orders WHERE user_id = ?', [req.session.user.user_id]);
+    /* Promise.all(orders.map(async (order) => {
+        const [orders] = await pool.query('SELECT * FROM order_Details od LEFT JOIN product p ON p.product_id = od.product_id  WHERE od.order_id = ?', [order.order_id])
+        return orders
+    }))
+    .then(orders => {
+        const sm = orders.reduce((p, c) => {
+            if(!p[c.order_id]) {
+                p[c.order_id] = 
+            };
+            p[c.product_id].q++
+            return p
+        }, {});
+        const products = Object.values(sm)
+        console.log(orders)
+        res.render('orders', { orders })
+    }) */
+    res.render('orders', { orders })
+})
+
+
+
 
 module.exports = router

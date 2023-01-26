@@ -56,15 +56,32 @@ module.exports = class VentasController {
             }, {});
             const product = sm[0].q
             */
-           const [{ insertId }] = await this.pool.query(sql, valuesForTable)
             const cabezeraSql = "INSERT INTO `cabezera_empresa` (`nombre_empresa`, `direccion_empresa`, `factura_id`) VALUES (?, ?, ?)"
-            
+            const [sc] = await this.pool.query('SELECT p.* from shopping_cart sc LEFT JOIN product p ON p.product_id = sc.product_id WHERE sc.user_id = ?', [req.session.user.user_id])
+            const sm = sc.reduce((p, c) => {
+                if(!p[c.product_id]) {
+                    p[c.product_id] = { q: 0, ...c }
+                };
+                p[c.product_id].q++
+                return p
+            }, {});
+            const products = Object.values(sm)
+            console.log("ventas", products)
             const historialSQL = "INSERT INTO `historial` (`factura_id`, `user_id`) VALUES (?, ?)"
-            const orderSql = "INSERT INTO `orders` (`cantidad`, `product_id`, `precio_total`, ) VALUES (?, ?, ?)"
+            const orderSql = "INSERT INTO `orders` (`precio_total`, `fecha`, `user_id`) VALUES (?, current_timestamp(), ?)"
+            const orderDetailsSql = "INSERT INTO `order_Details` (`product_id`, `price`, `cantidad`, `order_id`) VALUES (?, ?, ?, ?)"
             //await this.pool.query(cabezeraSql, ['Tina', 'direccion empresa', insertId])
             //await this.pool.query(historialSQL, [insertId, user.user_id])
-           // await this.pool.query(orderSql, [product.q, product.product_id, precio_total])
-            res.redirect(`/factura/${insertId}`)
+           const [{ insertId: orderId }] = await this.pool.query(orderSql, [precio_total, user.user_id])
+           let self = this
+           const [{ insertId: facturaId }] = await this.pool.query(sql, valuesForTable)
+           Promise.all(products.map(async (x) => {
+               const row = await self.pool.query(orderDetailsSql, [x.product_id, x.price, x.q, orderId])
+               return row
+           }))
+           .then((value) => {
+                res.redirect(`/factura/${facturaId}`)
+           })
            //res.redirect('/')
         } catch (error) {
             console.log(error)

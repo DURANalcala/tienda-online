@@ -12,6 +12,8 @@ services:
         MYSQL_ROOT_HOST: '%'
       ports:
         - $DB_PORT:$DB_PORT
+      volumes:
+        - db:/var/lib/mysql
     app:
       build: .
       restart: always
@@ -32,3 +34,5 @@ services:
      environment:
        PMA_ARBITRARY: 1
        PMA_HOST: db
+volumes:
+   db:
