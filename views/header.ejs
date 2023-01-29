@@ -26,6 +26,9 @@
               <% if(user) { %>
                 <a class="nav-linkup" style="color: black" href="/logout">logout</a>
               <% } %>
+              <% if(user) { %>
+                <a class="nav-linkup" style="color: black" href="/orders">Ordenes</a>
+              <% } %>
               <div class="d-flex flex-column align-items-center">
                 <a class="nav-linkup" style="color: black; display: flex; flex-direction: column;" href="/shoppingCart">
                   ShoppingCart
@@ -44,8 +47,12 @@
                     </span>
                   </a>
                   <ul style="margin: 100px 0 0 200px;">
-                    <img src="/img/redes.png"  width="50" height="50" style="object-fit: contain;" >
-                    <img src="/img/Insta.png"  width="50" height="50" style="object-fit: contain;" >
+                    <a href="https://facebook.com">
+                      <img src="/img/redes.png"  width="50" height="50" style="object-fit: contain;" >    
+                    </a>
+                    <a href="https://www.instagram.com/?hl=es-la">
+                      <img src="/img/Insta.png"  width="50" height="50" style="object-fit: contain;" >
+                    </a>
                     <img src="/img/ws.png"  width="55" height="55" style="object-fit: contain;" >
                     <img src="/img/ubicacion-icon.png" width="50" height="70" style="object-fit: contain;">
                   </ul>
@@ -60,7 +67,7 @@
                   <div class="collapse navbar-collapse" id="navbarNav" style="font-weight: bold; text-transform: uppercase;">
                     <ul class="navbar-nav" >
                         <li class="nav-item">
-                            <a class="nav-link active text-warning" aria-current="page" href="/" >All</a>
+                            <a class="nav-link active text-warning" aria-current="page" href="/" >Todas</a>
                         </li>
                         <% categories.forEach(function(category){ %>
                           <li class="nav-item">

@@ -12,7 +12,12 @@ function AllFieldsAreRequired(body) {
     Object.values(body)
 }
 
+function validateIfItsNumber(text) {
+    return /^[0-9]*(\.?)[ 0-9]+$/.test(text)
+}
+
 module.exports = {
     validatePassword,
-    validateEmail
+    validateEmail,
+    validateIfItsNumber
 }

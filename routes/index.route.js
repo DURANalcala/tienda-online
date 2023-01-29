@@ -80,6 +80,28 @@ router.get('/orders/', authMid, async (req, res) => {
 })
 
 
+router.get('/orders/:orderId', authMid, async (req, res) => {
+    const { orderId } = req.params
+    const [orders] = await pool.query('SELECT * FROM order_Details od LEFT JOIN product p ON p.product_id = od.product_id  WHERE od.order_id = ?', [orderId])
+    /* Promise.all(orders.map(async (order) => {
+        const [orders] = await pool.query('SELECT * FROM order_Details od LEFT JOIN product p ON p.product_id = od.product_id  WHERE od.order_id = ?', [order.order_id])
+        return orders
+    }))
+    .then(orders => {
+        const sm = orders.reduce((p, c) => {
+            if(!p[c.order_id]) {
+                p[c.order_id] = 
+            };
+            p[c.product_id].q++
+            return p
+        }, {});
+        const products = Object.values(sm)
+        console.log(orders)
+        res.render('orders', { orders })
+    }) */
+    console.log(orders)
+    res.render('order-details', { orders })
+})
 
 
 module.exports = router

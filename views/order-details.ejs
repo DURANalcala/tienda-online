@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row p-4">
+        <h3>Detalles de la orden</h3>
+    </div>
+    <div class="row p-4">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">descripcion</th>
+                    <th scope="col">cantidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                  <% orders.forEach(function(product){ %>
+                    <tr>
+                        <th scope="row"><%= product.product_id %></th>
+                        <td><%= product.name %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.description %></td>
+                        <td><%= product.cantidad %></td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+          </div>
+    </div>
+</div>

@@ -37,16 +37,11 @@
                  <div class="container">
                           <div class="row justify-content-end">
                             <div class="col-md-4 p-4">
-                              <select name="periodo" id="periodo">
-                                <option value="1">Esta semana</option>
-                                <option value="2">Este mes</option>
-                                <option value="3">Este año</option>
-                              </select>
                             </div>
                           </div>
                           <div class="row">
                             <!-- <a href="/products" class="col-md-4 p-4 bg-dark link-light">Products</a> -->
-                              <div class="col">
+<!--                               <div class="col">
                                 <div class="card shadow-sm">
                                   <div class="card-header">
                                     <h4>Clientes nuevos</h4>
@@ -65,18 +60,18 @@
                                       <p>115</p>
                                   </div>
                                 </div>
-                              </div> 
+                              </div>  -->
                               <div class="col">
                                 <div class="card shadow-sm">
                                   <div class="card-header">
                                     <h4>Ganancias</h4>
                                   </div>
                                   <div class="card-body">
-                                      <p>115</p>
+                                      <p><%= ganancias %></p>
                                   </div>
                                 </div>
                               </div> 
-                              <div class="col">
+<!--                               <div class="col">
                                 <div class="card shadow-sm">
                                   <div class="card-header">
                                     <h4>Gastos</h4>
@@ -85,7 +80,7 @@
                                       <p>115</p>
                                   </div>
                                 </div>
-                              </div>                             
+                              </div>                 -->             
                           </div>
                           <div class="row my-4">
                             <div class="col-md-4">
@@ -93,19 +88,19 @@
                                 <canvas id="myChart"></canvas>
                               </div>
                             </div>
-                            <div class="col">
+<!--                             <div class="col">
                               <div class="card">
                                 <canvas id="sales"></canvas>
                               </div>
-                            </div>
+                            </div> -->
                           </div>
-                          <div class="row">
+                      <!--     <div class="row">
                             <div class="col">
                               <div class="card">
                                 <canvas id="s"></canvas>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                     </div>
              </div>
              <!-- /#page-content-wrapper -->          
@@ -118,14 +113,17 @@
            const ctx = document.getElementById('myChart');
            const salesCtx = document.getElementById('sales');
            const sctx = document.getElementById('s');
+           const products = <%- JSON.stringify( products ) %>;
          
            const chart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    //  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: products.map(p => p.name),
                       datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        label: 'Numero de ventas',
+                        //data: [12, 19, 3, 5, 2, 3],
+                        data: products.map(p => p.vend),
                         borderWidth: 1
                       }]
                     },

@@ -44,6 +44,8 @@
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Precio</th>
                                     <th scope="col">descripcion</th>
+                                    <th scope="col">cantidad</th>
+
                                     <th scope="col">Actions</th>
                                   </tr>
                                 </thead>
@@ -55,6 +57,8 @@
                                         <td><%= product.name %></td>
                                         <td><%= product.price %></td>
                                         <td><%= product.description %></td>
+                                        <td><%= product.quantity %></td>
+
                                         <td>
                                           <a href="/editProduct/<%= product.product_id %>" class="btn btn-secondary">Edit</a>
                                         </td>

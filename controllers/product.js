@@ -28,21 +28,29 @@ module.exports = class ProductController {
         }
     }
 
+    tooLong = (des) => {
+        if (des.length > 150) {
+            throw Error("Error: Coloque una descripcion mas corta");
+        }
+    }
+
     editProductPost = async (req, res) => {
         try {
-            const { product_id, price, name, quantity, description } = req.body
-            console.log(req.body, req.file)
+            const { product_id, price, name, quantity, description, img_url } = req.body
+            this.tooLong(description)
             await this.pool.query
             (`
                 UPDATE 
                 product 
                 SET name = ?, price = ?, quantity = ?, description = ?, img_url = ?
                 WHERE product_id = ?`, 
-                [name, price, quantity, description, req.file.path, product_id]
+                [name, price, quantity, description, req.file ? req.file.path :  img_url , product_id]
             )
             res.redirect('/products')
         } catch (error) {
             console.log(error)
+            req.session.errors = [error.message]
+            res.redirect('back')
         }
     }
 

@@ -1,4 +1,4 @@
-const { validatePassword, validateEmail } = require("../utils/validators");
+const { validatePassword, validateEmail, validateIfItsNumber } = require("../utils/validators");
 const md5 = require('blueimp-md5');
 const { redirecter } = require("../utils/redirecter");
 
@@ -39,11 +39,12 @@ signUp_post =  async (req,res) => {
                 throw new Error('Todos los campos deben ser llenados')
             }
             if(password !== repeatedPassword) throw Error('Las contraseñas deben ser iguales');
-            if (!validateEmail(email) || email === "a@a.com") throw Error("el email es invalido");
+            if (!validateEmail(email)) throw Error("el email es invalido");
             if(!validatePassword(password)) {
                 throw new Error('El password debe tener al menos 3 numeros')
             }
          })
+         if ([p_nombre, s_nombre, p_apellido, s_apellido].some(validateIfItsNumber)) throw new Error("Los campos de nombres y apellidos no pueden ser numeros");
          const hashedPassword = md5(password)
         const [{insertId}] = await this.pool.query('INSERT INTO direcciones (id_estado, id_ciudad, id_municipio, id_parroquia, direccion_1, casa ) VALUES (?, ?, ?, ?, ?, ?)',
        [1, 1, 1, 1, direccion_1, casa])
@@ -111,6 +112,7 @@ registrarEmpleado = async (req,res) => {
                 throw new Error('El password debe tener al menos 3 numeros')
             }
          })
+         if ([p_nombre, s_nombre, p_apellido, s_apellido].some(validateIfItsNumber)) throw new Error("Los campos de nombres y apellidos no pueden ser numeros");
          const hashedPassword = md5(password)
         const [{insertId}] = await this.pool.query('INSERT INTO direcciones (id_estado, id_ciudad, id_municipio, id_parroquia, direccion_1, casa ) VALUES (?, ?, ?, ?, ?, ?)',
        [1, 1, 1, 1, direccion_1, casa])
@@ -132,8 +134,11 @@ registrarEmpleado_get = async (req, res) => {
 }
 
 inventarioDashboard = async (req, res) => {
-   // const [facturas] = await this.pool.query('SELECT * from historial WHERE fecha = ')
-    res.render('inventario-dashboard')
+    const [row] = await this.pool.query('SELECT SUM(precio_total) as ganancias FROM `orders`')
+    const [rows] = await this.pool.query('SELECT COUNT(od.product_id) as vend, od.product_id, p.name FROM `order_Details` od LEFT JOIN product p ON od.product_id = p.product_id GROUP BY od.product_id;')
+    console.log(row)
+    console.log(rows)
+    res.render('inventario-dashboard', { ganancias: row[0].ganancias, products: rows })
 }
 
 bloquearUsuario = async (req, res) => {
