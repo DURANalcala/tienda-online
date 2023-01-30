@@ -72,5 +72,6 @@ Dockerfile: es un archivo o documento de texto simple que incluye una serie de i
 A este conjunto de instrucciones se le conoce como línea de comandos y serán los encargados de indicar los pasos a seguir para el ensamblaje de una imagen en Docker, es decir, los elementos necesarios para el desarrollo de un contenedor en Docker.
 Db.js: este archivo conecta la base de datos con la pagina web 
 Package.json: este archivo es el “corazon” del proyecto ya que contiene la información importante del  mismo y defines los atributos de las funcionalidades, instalar dependencias, ejecutar comandos o scripts
-Proyecto_implantacion.sql : Es la base de datos de la pagina web
+Proyecto_implantacion.sql : Es la base de datos del proyecto
+
 <img src="./assets/image5.png" />
