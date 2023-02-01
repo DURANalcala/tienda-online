@@ -1,20 +1,22 @@
-# proyecto tienda online
+<h1>Tienda Online Tina</h1>
 
 La finalidad de este sistema es la de automatizar el área de ventas de una pequeña tienda (negocio) el cual apunta hacia el mercado de los útiles escolares, en este se pueden ver los productos en el inventario, agregar nuevos productos y actualizarlos, existen varios tipos de roles o usuarios los cuales van a tener distintas funciones, uno de estos es el contador que se encarga de confirmar o rechazar los pagos, el inventario el cual ve un sencillo reporte de ventas y añade nuevos productos al inventario del sistema, tenemos al administrador que se encarga de registrar a los demás usuarios del sistema  ademas de tener la capacidad de cambiar sus estatus de ACTIVO a BLOQUEADO no permitiéndoles iniciar sesión en el sistema, por ultimo tenemos al mas importante el cliente este realiza todas las funcionalidades de un cliente en cualquier E-Commerce, compra productos, filtra productos por categoría, selecciona un producto para ver sus detalles, añade productos al carrito de compra, realiza el pago, el cual el decide como efectuarlo si por transferencia-pago móvil en caso de pagar en bolívares o tarjeta de crédito en caso de pagar con dólares, de los productos que añadió previamente a su carrito, y después de realizar esta puede ver una lista de sus ordenes o compras la cual se ve en la barra superior de navegación.
 
 ## Como correr la applicacion caso de user Xampp
-- instalar [https://nodejs.org/en/download/](Nodejs)
-- instalar [https://www.apachefriends.org/](XAMPP)
-- clona este repositorio ´´´ git clone https://github.com/DURANalcala/tienda-online ´´´
-- Instala las dependencias del proyecto ´´´ npm install ´´´
-- Correr el proyecto con este comando ```npm start```
+- instalar [Nodejs](https://nodejs.org/en/download/)
+- instalar [XAMPP](https://www.apachefriends.org/)
+- clona este repositorio ```git clone https://github.com/DURANalcala/tienda-online ```
+- Instala las dependencias del proyecto ``` npm install ```
+- Ingresar en PHPMyadmin e Importar el archivo en este repositorio llamado proyecto_implantacion.sql 
+- Correr el proyecto con este comando ``` npm start ```
 
 
 ## Como correr la applicacion en caso de usar docker
-- [https://www.docker.com/](Instalar Docker)
-- clona este repositorio ´´´ git clone https://github.com/DURANalcala/tienda-online ´´´
-- [https://docs.docker.com/compose/install/](Instala Docker Compose)
-- Correr todos los contenedor con ´´´ docker-compose up --build ´´´
+- [Instalar Docker](https://www.docker.com/)
+- clona este repositorio ```git clone https://github.com/DURANalcala/tienda-online ```
+- [Instala Docker Compose](https://docs.docker.com/compose/install/)
+- Correr todos los contenedor con ```docker-compose up --build```
+- Ingresar en PHPMyadmin e Importar el archivo en este repositorio llamado proyecto_implantacion.sql 
 
 ## Conceptos:
 
