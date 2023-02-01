@@ -1,4 +1,22 @@
-# proyecto tienda online
+<h1>Tienda Online Tina</h1>
+
+La finalidad de este sistema es la de automatizar el área de ventas de una pequeña tienda (negocio) el cual apunta hacia el mercado de los útiles escolares, en este se pueden ver los productos en el inventario, agregar nuevos productos y actualizarlos, existen varios tipos de roles o usuarios los cuales van a tener distintas funciones, uno de estos es el contador que se encarga de confirmar o rechazar los pagos, el inventario el cual ve un sencillo reporte de ventas y añade nuevos productos al inventario del sistema, tenemos al administrador que se encarga de registrar a los demás usuarios del sistema  ademas de tener la capacidad de cambiar sus estatus de ACTIVO a BLOQUEADO no permitiéndoles iniciar sesión en el sistema, por ultimo tenemos al mas importante el cliente este realiza todas las funcionalidades de un cliente en cualquier E-Commerce, compra productos, filtra productos por categoría, selecciona un producto para ver sus detalles, añade productos al carrito de compra, realiza el pago, el cual el decide como efectuarlo si por transferencia-pago móvil en caso de pagar en bolívares o tarjeta de crédito en caso de pagar con dólares, de los productos que añadió previamente a su carrito, y después de realizar esta puede ver una lista de sus ordenes o compras la cual se ve en la barra superior de navegación.
+
+## Como correr la applicacion caso de user Xampp
+- instalar [Nodejs](https://nodejs.org/en/download/)
+- instalar [XAMPP](https://www.apachefriends.org/)
+- clona este repositorio ```git clone https://github.com/DURANalcala/tienda-online ```
+- Instala las dependencias del proyecto ``` npm install ```
+- Ingresar en PHPMyadmin e Importar el archivo en este repositorio llamado proyecto_implantacion.sql 
+- Correr el proyecto con este comando ``` npm start ```
+
+
+## Como correr la applicacion en caso de usar docker
+- [Instalar Docker](https://www.docker.com/)
+- clona este repositorio ```git clone https://github.com/DURANalcala/tienda-online ```
+- [Instala Docker Compose](https://docs.docker.com/compose/install/)
+- Correr todos los contenedor con ```docker-compose up --build```
+- Ingresar en PHPMyadmin e Importar el archivo en este repositorio llamado proyecto_implantacion.sql 
 
 ## Conceptos:
 
@@ -72,5 +90,6 @@ Dockerfile: es un archivo o documento de texto simple que incluye una serie de i
 A este conjunto de instrucciones se le conoce como línea de comandos y serán los encargados de indicar los pasos a seguir para el ensamblaje de una imagen en Docker, es decir, los elementos necesarios para el desarrollo de un contenedor en Docker.
 Db.js: este archivo conecta la base de datos con la pagina web 
 Package.json: este archivo es el “corazon” del proyecto ya que contiene la información importante del  mismo y defines los atributos de las funcionalidades, instalar dependencias, ejecutar comandos o scripts
-Proyecto_implantacion.sql : Es la base de datos de la pagina web
+Proyecto_implantacion.sql : Es la base de datos del proyecto
+
 <img src="./assets/image5.png" />
