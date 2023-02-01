@@ -48,9 +48,14 @@ router.post('/pagarProducto', authMid, async (req, res) => {
 
 router.post('/registrarVenta',authMid,  ctl.ventasController.registrarVenta)
 
-router.get('/factura/:id', authMid, (req, res) => {
+router.get('/factura/:id', authMid, async (req, res) => {
     const id = req.params.id
-    res.render('factura')
+    console.log("id", id)
+    const [[ce]] = await pool.query('SELECT * FROM cabezera_empresa WHERE factura_id = ?', [id])
+    const [[factura]] = await pool.query('SELECT * FROM factura f LEFT JOIN users u ON u.user_id = f.user_id  WHERE f.codigo_factura = ? ', [id])
+    
+    console.log(ce, factura)
+    res.render('factura', { ce, factura })
 })
 
 router.post('/selectEstado', (req, res) => {

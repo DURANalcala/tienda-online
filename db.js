@@ -1,5 +1,8 @@
 const { createPool } = require('mysql2/promise')
 const db_config = require('./config/db-config')
+const fs = require("fs")
+//const dataSql = fs.readFileSync("./proyecto_implantacion.sql").toString();
+const SQL_FILE_PATH = "./proyecto_implantacion.sql";
 
 function init() {
     try {
@@ -10,6 +13,7 @@ function init() {
             port: db_config.port,
             database: db_config.database
         }) 
+  
     console.log('DB connected')
     return pool
     } catch (error) {

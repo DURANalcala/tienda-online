@@ -7,6 +7,30 @@
                         <img style="width: 100%; height: auto; object-fit: cover" src="/img/success.png" alt="success">
                     </div>
                     <h3 style="font-size: 2rem;">Gracias su pago ha sido realizado</h3>
+                    <div class="row">
+                        <div class="col">
+                            <h4><%= ce.nombre_empresa %></h4>
+                        </div>
+                        <div class="col">
+                            <h4>Direccion: <%= ce.direccion_empresa %></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h4>Nombre: <%= factura.p_nombre + " " + factura.p_apellido %></h4>
+                        </div>
+                        <div class="col">
+                            <h4>Codigo factura: <%= factura.codigo_factura %></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4>Fecha: <%= factura.fecha %></h4>
+                    </div>
+                    <div class="row">
+                        <h4>IVA: <%= factura.IVA %></h4>
+                        <h4>Precio total BS: <%= factura.p_t_bs %> BS</h4>
+                        <h4>Precio total $: <%= factura.p_t_$ %> $</h4>
+                    </div>
                 </div>
             </div>
         </div>

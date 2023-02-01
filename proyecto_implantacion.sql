@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 23-01-2023 a las 07:09:22
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.1.12
+-- Servidor: db
+-- Tiempo de generación: 29-01-2023 a las 20:47:30
+-- Versión del servidor: 5.7.40
+-- Versión de PHP: 8.0.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `bancos` (
   `banco_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `codigo_banco` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `bancos`
@@ -79,22 +79,7 @@ CREATE TABLE `cabezera_empresa` (
   `nombre_empresa` varchar(150) NOT NULL,
   `direccion_empresa` varchar(150) NOT NULL,
   `factura_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `cabezera_empresa`
---
-
-INSERT INTO `cabezera_empresa` (`cabezera_empresa_id`, `nombre_empresa`, `direccion_empresa`, `factura_id`) VALUES
-(2, 'Tina', 'Direccion', 7041),
-(4, 'Tina', 'direccion empresa', 3471),
-(5, 'Tina', 'direccion empresa', 3472),
-(6, 'Tina', 'direccion empresa', 3473),
-(7, 'Tina', 'direccion empresa', 3474),
-(8, 'Tina', 'direccion empresa', 3475),
-(9, 'Tina', 'direccion empresa', 3476),
-(10, 'Tina', 'direccion empresa', 3477),
-(11, 'Tina', 'direccion empresa', 3478);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -106,7 +91,7 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL,
   `details` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `categories`
@@ -127,8 +112,8 @@ CREATE TABLE `ciudades` (
   `id_ciudad` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
   `ciudad` varchar(200) NOT NULL,
-  `capital` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `capital` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `ciudades`
@@ -647,29 +632,34 @@ CREATE TABLE `direcciones` (
   `id_municipio` int(11) NOT NULL,
   `id_parroquia` int(11) NOT NULL,
   `direccion_1` varchar(150) NOT NULL,
-  `direccion_2` varchar(150) NOT NULL DEFAULT '""',
-  `casa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `casa` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `direcciones`
 --
 
-INSERT INTO `direcciones` (`direccion_ID`, `id_estado`, `id_ciudad`, `id_municipio`, `id_parroquia`, `direccion_1`, `direccion_2`, `casa`) VALUES
-(1, 1, 1, 1, 1, 'dffddfdf', '\"\"', 6164),
-(2, 1, 1, 1, 1, 'fdfdffdfd', '\"\"', 6164),
-(3, 1, 1, 1, 1, 'dfdfdffd', '\"\"', 6164),
-(4, 1, 1, 1, 1, 'dffddfdfdfdf', '\"\"', 6164),
-(5, 1, 1, 1, 1, 'ddfdffdfd', '\"\"', 6162),
-(6, 1, 1, 1, 1, 'dfdffdf', '\"\"', 6164),
-(7, 1, 1, 1, 1, 'frrtrtrt', '\"\"', 6162),
-(8, 1, 1, 1, 1, 'jxjjejerjerj', '\"\"', 6162),
-(9, 1, 1, 1, 1, 'edffedfhh', '\"\"', 1234),
-(10, 1, 1, 1, 1, 'dfdfdfdfdf', '\"\"', 6164),
-(11, 1, 1, 1, 1, 'calle carabobo', '\"\"', 6164),
-(12, 1, 1, 1, 1, 'calle carabobo', '\"\"', 6164),
-(13, 1, 1, 1, 1, 'calle carabobo', '\"\"', 1234),
-(14, 1, 1, 1, 1, 'calle 7 entre 2 y 3', '\"\"', 2344);
+INSERT INTO `direcciones` (`direccion_ID`, `id_estado`, `id_ciudad`, `id_municipio`, `id_parroquia`, `direccion_1`, `casa`) VALUES
+(1, 1, 1, 1, 1, 'dffddfdf', '6164'),
+(2, 1, 1, 1, 1, 'fdfdffdfd', '6164'),
+(3, 1, 1, 1, 1, 'dfdfdffd', '6164'),
+(4, 1, 1, 1, 1, 'dffddfdfdfdf', '6164'),
+(5, 1, 1, 1, 1, 'ddfdffdfd', '6162'),
+(6, 1, 1, 1, 1, 'dfdffdf', '6164'),
+(7, 1, 1, 1, 1, 'frrtrtrt', '6162'),
+(8, 1, 1, 1, 1, 'jxjjejerjerj', '6162'),
+(9, 1, 1, 1, 1, 'edffedfhh', '1234'),
+(10, 1, 1, 1, 1, 'dfdfdfdfdf', '6164'),
+(11, 1, 1, 1, 1, 'calle carabobo', '6164'),
+(12, 1, 1, 1, 1, 'calle carabobo', '6164'),
+(13, 1, 1, 1, 1, 'calle carabobo', '1234'),
+(14, 1, 1, 1, 1, 'calle 7 entre 2 y 3', '2344'),
+(15, 1, 1, 1, 1, 'calle 7 entre 2 y 3', '1234'),
+(16, 1, 1, 1, 1, 'calle 7 entre 2 y 3', '4444'),
+(17, 1, 1, 1, 1, 'calle 7 entre 2 y 3', '4444'),
+(18, 1, 1, 1, 1, 'direccion', 'casa nº 2-34'),
+(19, 1, 1, 1, 1, 'calle 7 entre 2 y 3', 'casa nº 2-34'),
+(20, 1, 1, 1, 1, 'calle 7 entre 2 y 3', 'casa nº 2-34');
 
 -- --------------------------------------------------------
 
@@ -681,7 +671,7 @@ CREATE TABLE `estados` (
   `id_estado` int(11) NOT NULL,
   `estado` varchar(250) NOT NULL,
   `iso_3166-2` varchar(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `estados`
@@ -723,37 +713,47 @@ INSERT INTO `estados` (`id_estado`, `estado`, `iso_3166-2`) VALUES
 CREATE TABLE `factura` (
   `factura_id` int(11) NOT NULL,
   `codigo_factura` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `precio_total` float NOT NULL,
   `ref_pago` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `IVA` float NOT NULL,
-  `tres_porciento_dolares` float NOT NULL DEFAULT 0,
-  `p_t_$` float NOT NULL DEFAULT 0,
-  `p_t_bs` float NOT NULL DEFAULT 0,
-  `p_t_e` float NOT NULL DEFAULT 0,
+  `tres_porciento_dolares` float NOT NULL DEFAULT '0',
+  `p_t_$` float NOT NULL DEFAULT '0',
+  `p_t_bs` float NOT NULL DEFAULT '0',
+  `p_t_e` float NOT NULL DEFAULT '0',
   `status` enum('registrada','aceptada','rechazada','devuelta') NOT NULL DEFAULT 'registrada'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `factura`
 --
 
 INSERT INTO `factura` (`factura_id`, `codigo_factura`, `fecha`, `precio_total`, `ref_pago`, `user_id`, `IVA`, `tres_porciento_dolares`, `p_t_$`, `p_t_bs`, `p_t_e`, `status`) VALUES
-(1, 3456, '2023-01-17', 34.4456, 3456, 11, 5.5104, 1.0332, 0, 0, 0, 'registrada'),
-(2, 3444, '2023-01-17', 34.4456, 3456, 11, 5.5104, 1.0332, 0, 0, 0, 'registrada'),
-(22, 3457, '2023-01-18', 34.4456, 3456, 12, 5.5104, 1.0332, 0, 200.867, 0, 'registrada'),
-(401, 3470, '2023-01-18', 3.57, 3293, 13, 0.48, 0.09, 3.57, 0, 0, 'registrada'),
-(1365, 3481, '2023-01-19', 9.66, 2345, 11, 9.6, 0, 0, 9.66, 0, 'registrada'),
-(2714, 3480, '2023-01-19', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
-(3370, 3475, '2023-01-18', 29.036, 2323, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
-(3555, 3477, '2023-01-18', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
-(5523, 3478, '2023-01-18', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
-(5935, 3474, '2023-01-18', 29.036, 1233, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
-(6058, 3476, '2023-01-18', 29.036, 2323, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
-(7232, 3479, '2023-01-18', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
-(8375, 3472, '2023-01-18', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
-(8706, 3473, '2023-01-18', 29.036, 1233, 11, 3.904, 0, 0, 29.036, 0, 'registrada');
+(1, 3456, '2023-01-17 04:00:00', 34.4456, 3456, 11, 5.5104, 1.0332, 0, 0, 0, 'rechazada'),
+(2, 3444, '2023-01-17 04:00:00', 34.4456, 3456, 11, 5.5104, 1.0332, 0, 0, 0, 'aceptada'),
+(22, 3457, '2023-01-18 04:00:00', 34.4456, 3456, 12, 5.5104, 1.0332, 0, 200.867, 0, 'aceptada'),
+(85, 3487, '2023-01-26 04:00:00', 71.4, 2345, 17, 9.6, 0, 0, 71.4, 0, 'registrada'),
+(401, 3470, '2023-01-18 04:00:00', 3.57, 3293, 13, 0.48, 0.09, 3.57, 0, 0, 'registrada'),
+(779, 3484, '2023-01-26 04:00:00', 171.836, 2345, 17, 23.104, 0, 0, 171.836, 0, 'registrada'),
+(1365, 3481, '2023-01-19 04:00:00', 9.66, 2345, 11, 9.6, 0, 0, 9.66, 0, 'registrada'),
+(1762, 3490, '2023-01-26 04:00:00', 7.14, 5180, 1, 0.96, 0.18, 7.14, 0, 0, 'registrada'),
+(2714, 3480, '2023-01-19 04:00:00', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(3370, 3475, '2023-01-18 04:00:00', 29.036, 2323, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(3555, 3477, '2023-01-18 04:00:00', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(5523, 3478, '2023-01-18 04:00:00', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(5935, 3474, '2023-01-18 04:00:00', 29.036, 1233, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(6058, 3476, '2023-01-18 04:00:00', 29.036, 2323, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(6117, 3486, '2023-01-26 04:00:00', 129.472, 2345, 17, 17.408, 0, 0, 129.472, 0, 'registrada'),
+(6209, 3491, '2023-01-26 04:00:00', 95.2, 2342323, 1, 12.8, 0, 0, 95.2, 0, 'registrada'),
+(7047, 3483, '2023-01-26 04:00:00', 142.8, 2345, 17, 19.2, 0, 0, 142.8, 0, 'registrada'),
+(7232, 3479, '2023-01-18 04:00:00', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(7275, 3485, '2023-01-26 04:00:00', 100.436, 2345, 17, 13.504, 0, 0, 100.436, 0, 'registrada'),
+(7474, 3482, '2023-01-24 04:00:00', 5.0218, 3906, 11, 0.6752, 0.1266, 5.0218, 0, 0, 'registrada'),
+(8375, 3472, '2023-01-18 04:00:00', 29.036, 2345, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(8480, 3488, '2023-01-26 04:00:00', 8.5918, 4283, 17, 1.1552, 0.2166, 8.5918, 0, 0, 'registrada'),
+(8706, 3473, '2023-01-18 04:00:00', 29.036, 1233, 11, 3.904, 0, 0, 29.036, 0, 'registrada'),
+(8929, 3489, '2023-01-26 04:00:00', 190.4, 3456, 1, 25.6, 0, 0, 190.4, 0, 'registrada');
 
 --
 -- Disparadores `factura`
@@ -775,8 +775,8 @@ CREATE TABLE `historial` (
   `historial_id` int(11) NOT NULL,
   `factura_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `fecha_compra` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `fecha_compra` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `historial`
@@ -786,7 +786,17 @@ INSERT INTO `historial` (`historial_id`, `factura_id`, `user_id`, `fecha_compra`
 (16, 5523, 11, '2023-01-19 01:36:52'),
 (18, 7232, 11, '2023-01-19 01:37:35'),
 (19, 2714, 11, '2023-01-19 11:12:10'),
-(24, 1365, 11, '2023-01-19 14:31:56');
+(24, 1365, 11, '2023-01-19 14:31:56'),
+(25, 7474, 11, '2023-01-24 15:53:39'),
+(26, 7047, 17, '2023-01-26 11:01:07'),
+(27, 779, 17, '2023-01-26 11:03:17'),
+(28, 7275, 17, '2023-01-26 11:05:50'),
+(29, 6117, 17, '2023-01-26 11:21:29'),
+(30, 85, 17, '2023-01-26 11:22:21'),
+(31, 8480, 17, '2023-01-26 11:36:16'),
+(32, 8929, 1, '2023-01-26 15:29:17'),
+(33, 1762, 1, '2023-01-26 15:33:16'),
+(34, 6209, 1, '2023-01-26 15:40:18');
 
 --
 -- Disparadores `historial`
@@ -809,16 +819,16 @@ CREATE TABLE `inventario` (
   `inventario_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `ultima_actualizacion` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `ultima_actualizacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `inventario`
 --
 
 INSERT INTO `inventario` (`inventario_id`, `product_id`, `cantidad`, `ultima_actualizacion`) VALUES
-(1, 1, 23, '2023-01-19'),
-(2, 4, 33, '2023-01-19');
+(1, 1, 23, '2023-01-19 04:00:00'),
+(2, 4, 33, '2023-01-19 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -828,8 +838,8 @@ INSERT INTO `inventario` (`inventario_id`, `product_id`, `cantidad`, `ultima_act
 
 CREATE TABLE `metos_de_pago` (
   `metodos_pago_id` int(11) NOT NULL,
-  `name` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `name` varchar(150) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `metos_de_pago`
@@ -849,7 +859,7 @@ CREATE TABLE `municipios` (
   `id_municipio` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
   `municipio` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `municipios`
@@ -1200,10 +1210,48 @@ INSERT INTO `municipios` (`id_municipio`, `id_estado`, `municipio`) VALUES
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
-  `factura_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `precio_total` float NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `precio_total`, `fecha`, `user_id`) VALUES
+(14, 6.4736, '2023-01-26 11:21:29', 17),
+(15, 3.57, '2023-01-26 11:22:21', 17),
+(16, 8.5918, '2023-01-26 11:36:16', 17),
+(17, 9.52, '2023-01-26 15:29:17', 1),
+(18, 7.14, '2023-01-26 15:33:15', 1),
+(19, 4.76, '2023-01-26 15:40:18', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `order_Details`
+--
+
+CREATE TABLE `order_Details` (
+  `od_id` bigint(20) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `price` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `order_Details`
+--
+
+INSERT INTO `order_Details` (`od_id`, `order_id`, `product_id`, `cantidad`, `price`) VALUES
+(1, 15, 4, 1, 3),
+(2, 16, 1, 1, 1.22),
+(3, 16, 4, 2, 3),
+(4, 17, 6, 2, 4),
+(5, 18, 4, 2, 3),
+(6, 19, 6, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -1215,7 +1263,7 @@ CREATE TABLE `parroquias` (
   `id_parroquia` int(11) NOT NULL,
   `id_municipio` int(11) NOT NULL,
   `parroquia` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `parroquias`
@@ -2364,31 +2412,6 @@ INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `parroquia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pedidos`
---
-
-CREATE TABLE `pedidos` (
-  `pedido_id` int(11) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `fecha_pedido` date NOT NULL,
-  `precio` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pedidos_users`
---
-
-CREATE TABLE `pedidos_users` (
-  `pedidos_users_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `pedido_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `product`
 --
 
@@ -2399,15 +2422,16 @@ CREATE TABLE `product` (
   `quantity` int(11) NOT NULL,
   `description` varchar(150) NOT NULL,
   `img_url` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `product`
 --
 
 INSERT INTO `product` (`product_id`, `name`, `price`, `quantity`, `description`, `img_url`) VALUES
-(1, 'cuaderno', 1.22, 20, '                                        Un cuaderno muy bonito\r\n                                    ', 'uploads/IMG-20221208-WA0015.jpg'),
-(4, 'Pilot G2 0.7 mm', 3, 10, 'The cheapest pencil you\'ve ever seen in your entire life', 'uploads/IMG-20221208-WA0013.jpg');
+(1, 'cuaderno', 1.22, 20, 'un cuaderno con tapa personalizada\r\n                                    \r\n                                    ', 'uploads/IMG-20221208-WA0015.jpg'),
+(4, 'Pilot G2 0.7 mm', 3, 10, 'Lapicero negro de la mas alta calidad ', 'uploads/IMG-20221208-WA0013.jpg'),
+(6, 'Stabillo boss pastel amarillo', 4, 5, 'Rotulador de punta ancha y color muy vivo que se usa para resaltar una parte de un texto pasándolo por encima.', 'uploads/IMG-20221208-WA0014.jpg');
 
 -- --------------------------------------------------------
 
@@ -2419,7 +2443,7 @@ CREATE TABLE `product_categories` (
   `product_categories_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `product_categories`
@@ -2438,7 +2462,7 @@ INSERT INTO `product_categories` (`product_categories_id`, `product_id`, `catego
 CREATE TABLE `roles` (
   `rol_id` int(11) NOT NULL,
   `name` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -2448,7 +2472,6 @@ INSERT INTO `roles` (`rol_id`, `name`) VALUES
 (1, 'admin'),
 (2, 'inventario'),
 (9, 'cliente'),
-(10, 'vendedor'),
 (11, 'contador');
 
 -- --------------------------------------------------------
@@ -2462,14 +2485,16 @@ CREATE TABLE `shopping_cart` (
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `shopping_cart`
 --
 
 INSERT INTO `shopping_cart` (`shopping_cart_id`, `user_id`, `product_id`, `quantity`) VALUES
-(16, 13, 4, 10);
+(22, 11, 4, 10),
+(37, 11, 4, 10),
+(38, 11, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -2489,7 +2514,7 @@ CREATE TABLE `users` (
   `cedula` varchar(11) NOT NULL,
   `telf` varchar(50) NOT NULL,
   `direccion_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -2498,14 +2523,19 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `p_nombre`, `s_nombre`, `p_apellido`, `s_apellido`, `status`, `email`, `password`, `cedula`, `telf`, `direccion_id`) VALUES
 (1, 'jorge', 'luis', 'duran', 'alcala', 'ACTIVO', 'jorgeluis21.duran@gmail.com', 'f109462a25588697b997cbf6bf1b3670', '232424223', '04267099827', 3),
 (2, 'dfdfdf', 'fdfdfdf', 'fddfdfdf', 'dffddf', 'ACTIVO', 'dfdfdfdf@gmail.com', 'f109462a25588697b997cbf6bf1b3670', '2343443', '3434434343', 4),
-(3, 'Manuel', 'Luis', 'Gonzales', 'Gonzales', 'ACTIVO', 'manuel@gmail.com', '3acb0eaf5eadf590475e0f37e01a4231', '6448160', '04267471512', 1),
 (4, 'Jose', 'luis', 'duran', 'alcala', 'ACTIVO', 'jose@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '26611812', '04267099827', 5),
 (5, 'Luis', 'carlos', 'duran', 'alcala', 'ACTIVO', 'luis@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '25511812', '04267099827', 6),
 (8, 'Jose', 'jose', 'alcala', 'alcala', 'ACTIVO', 'jose1@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '26611812', '439493493', 9),
 (9, 'juan', 'carlos', 'herrera', 'alcala', 'ACTIVO', 'juan@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '25511812', '04267099827', 10),
 (11, 'Jorge', 'Luis', 'Duran', 'Alcala', 'ACTIVO', 'jorge@gmail.com', '677161ab5289271b37cfa5150f1f8e7f', '28511812', '04267472630', 12),
 (12, 'Jorge', 'Luis', 'Duran', 'Alcala', 'ACTIVO', 'a@a.com', '9017da8754667bec8b4f846085ba7521', '28511812', '04267472630', 13),
-(13, 'ariadna', 'michelle', 'mendoza', 'garcia', 'ACTIVO', 'ariadnamendoza.idb@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '4499999', '+584267472630', 14);
+(13, 'ariadna', 'michelle', 'mendoza', 'garcia', 'ACTIVO', 'ariadnamendoza.idb@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '4499999', '+584267472630', 14),
+(14, 'jose', 'luis', 'duran', 'Alcala', 'ACTIVO', 'jose@gmal.com', 'acbf1f965f8a23b1e3bee4d2ff7b6547', '27511812', '+584264571512', 14),
+(15, 'Luis', 'Marcos', 'Duran', 'Alcala', 'ACTIVO', 'luis1@gmail.com', '202cb962ac59075b964b07152d234b70', '28596197', '04267472630', 15),
+(17, 'oswaldo', 'michelle', 'mendoza', 'garcia', 'ACTIVO', 'oswa@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '28511812', '+584267472630', 17),
+(18, 'jesus', 'dfdfdf', 'dfdfdff', 'dfdfdfdf', 'ACTIVO', 'inven@gmail.com', '202cb962ac59075b964b07152d234b70', '28511812', '+584267472630', 18),
+(19, '22323232', '123323', 'dffdfdf', 'dfdfdfdfdf', 'ACTIVO', 'mario@mario.com', '202cb962ac59075b964b07152d234b70', '28511812', '04267472630', 19),
+(20, 'Carlos', 'REERER', 'EERER', 'ererer', 'ACTIVO', 'carlos@gmail.com', '202cb962ac59075b964b07152d234b70', '28511812', '04267472630', 20);
 
 -- --------------------------------------------------------
 
@@ -2517,19 +2547,24 @@ CREATE TABLE `users_roles` (
   `users_roles_id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `users_roles`
 --
 
 INSERT INTO `users_roles` (`users_roles_id`, `rol_id`, `user_id`) VALUES
-(1, 1, 3),
 (2, 9, 1),
 (4, 2, 9),
 (5, 9, 11),
 (8, 9, 12),
-(9, 9, 13);
+(9, 9, 13),
+(10, 1, 14),
+(11, 11, 15),
+(12, 9, 17),
+(13, 2, 18),
+(14, 9, 19),
+(15, 11, 20);
 
 --
 -- Índices para tablas volcadas
@@ -2546,7 +2581,8 @@ ALTER TABLE `bancos`
 --
 ALTER TABLE `cabezera_empresa`
   ADD PRIMARY KEY (`cabezera_empresa_id`),
-  ADD KEY `ce_factura_id_fk` (`factura_id`);
+  ADD UNIQUE KEY `factura_id_2` (`factura_id`),
+  ADD KEY `factura_id` (`factura_id`);
 
 --
 -- Indices de la tabla `categories`
@@ -2613,9 +2649,14 @@ ALTER TABLE `municipios`
 -- Indices de la tabla `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`),
-  ADD UNIQUE KEY `product_id` (`product_id`),
-  ADD UNIQUE KEY `factura_id` (`factura_id`);
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indices de la tabla `order_Details`
+--
+ALTER TABLE `order_Details`
+  ADD PRIMARY KEY (`od_id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indices de la tabla `parroquias`
@@ -2623,20 +2664,6 @@ ALTER TABLE `orders`
 ALTER TABLE `parroquias`
   ADD PRIMARY KEY (`id_parroquia`),
   ADD KEY `id_municipio` (`id_municipio`);
-
---
--- Indices de la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`pedido_id`);
-
---
--- Indices de la tabla `pedidos_users`
---
-ALTER TABLE `pedidos_users`
-  ADD PRIMARY KEY (`pedidos_users_id`),
-  ADD KEY `pu_user_id_fk` (`user_id`),
-  ADD KEY `pu_pedido_id_fk` (`pedido_id`);
 
 --
 -- Indices de la tabla `product`
@@ -2708,19 +2735,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `direccion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `direccion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `codigo_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3482;
+  MODIFY `codigo_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3492;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `historial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `historial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
@@ -2738,25 +2765,19 @@ ALTER TABLE `metos_de_pago`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT de la tabla `pedidos`
+-- AUTO_INCREMENT de la tabla `order_Details`
 --
-ALTER TABLE `pedidos`
-  MODIFY `pedido_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `pedidos_users`
---
-ALTER TABLE `pedidos_users`
-  MODIFY `pedidos_users_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `order_Details`
+  MODIFY `od_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `product_categories`
@@ -2774,23 +2795,29 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `shopping_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `shopping_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `users_roles`
 --
 ALTER TABLE `users_roles`
-  MODIFY `users_roles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `users_roles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `cabezera_empresa`
+--
+ALTER TABLE `cabezera_empresa`
+  ADD CONSTRAINT `cabezera_empresa_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `factura` (`factura_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ciudades`
@@ -2824,24 +2851,16 @@ ALTER TABLE `municipios`
   ADD CONSTRAINT `municipios_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `orders`
+-- Filtros para la tabla `order_Details`
 --
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `factura` (`factura_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `order_Details`
+  ADD CONSTRAINT `order_Details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `parroquias`
 --
 ALTER TABLE `parroquias`
   ADD CONSTRAINT `parroquias_ibfk_1` FOREIGN KEY (`id_municipio`) REFERENCES `municipios` (`id_municipio`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `pedidos_users`
---
-ALTER TABLE `pedidos_users`
-  ADD CONSTRAINT `pedidos_users_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos` (`pedido_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedidos_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `product_categories`

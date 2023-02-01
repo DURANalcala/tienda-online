@@ -24,9 +24,9 @@ module.exports = class VentasController {
             const TIPO_DE_PAGO_DOLARES = tipo_de_pago === 'USD'
             const ifTruReturn = (condition, ifTrue, ifFalse) => condition ? ifTrue : ifFalse;
            const sql = ifTruReturn( tipo_de_pago === "USD",
-           'INSERT INTO `factura` (`factura_id`, `precio_total`, `ref_pago`, `user_id`, `IVA`, `tres_porciento_dolares`, `p_t_$`) VALUES (?, ?, ?, ?, ?, ?, ?);'
+           'INSERT INTO factura (factura_id, precio_total, ref_pago, user_id, IVA, tres_porciento_dolares, p_t_$) VALUES (?, ?, ?, ?, ?, ?, ?);'
            , 
-           'INSERT INTO `factura` (`factura_id`, `precio_total`, `ref_pago`, `user_id`, `IVA`, `p_t_bs`) VALUES (?, ?, ?, ?, ?, ?);'
+           'INSERT INTO factura (factura_id, precio_total, ref_pago, user_id, IVA, p_t_bs) VALUES (?, ?, ?, ?, ?, ?);'
            )
            
           const valuesForTable = ifTruReturn(TIPO_DE_PAGO_DOLARES, 
